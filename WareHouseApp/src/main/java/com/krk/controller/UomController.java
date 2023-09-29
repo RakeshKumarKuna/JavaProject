@@ -58,6 +58,12 @@ public class UomController {
     	map.put("data", ser.getAllUoms());
     	return "resultdata";
     }
+    /**
+     * 
+     * @param id to gat id of the record
+     * @param map to sending the result msg
+     * @return Deletemsg.html
+     */
     @GetMapping("/delete")
     public String delete(@RequestParam Integer id,Map map) {
     	String res=ser.deleteUom(id);
