@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+<style>
+
+</style>
+</head>
+<body>
+<div class="box">
+<table border="1">
+<tr>
+<td>ID</td><td>Type</td><td>Model</td><td>Description</td><td>Delete</td>
+</tr>
+<tr th:each="ob:${data}">
+<td  th:text="${ob.id}"></td>
+<td th:text="${ob.uomType}"></td>
+<td th:text="${ob.uomModel}"></td>
+<td th:text="${ob.description}"></td>
+<td><a th:href="@{/delete?id={data} (data=${ob.id})}"><span><button class="btn btn-primary">Delete</button></span></a></td>
+<td><a><button class="btn btn-dark w-100">Edit</button></a></td>
+</tr>
+</table>
+</div>
+ <script src="node_modules/jquery/dist/jquery.js"></script>
+ <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+</body>
+</html>
