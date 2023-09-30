@@ -10,4 +10,5 @@ public interface IUomService {
 public Integer saveUom(Uom uom);
 public List<Uom> getAllUoms();
 public String deleteUom(Integer id);
+public Uom getOneRecord(Integer id);
 }

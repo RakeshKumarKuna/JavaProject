@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
-import com.krk.service.impl.IUomServiceImpl;
 
 @Controller
 @RequestMapping("/")
@@ -65,9 +64,16 @@ public class UomController {
      * @return Deletemsg.html
      */
     @GetMapping("/delete")
-    public String delete(@RequestParam Integer id,Map map) {
+    public String delete(@RequestParam Integer id,Map<String, String> map) {
     	String res=ser.deleteUom(id);
     	map.put("deleteres", res);
     	return "Deletedmsg";
+    }
+    @GetMapping("/edit")
+    public String edit(@RequestParam("id") Integer id,Map map) {
+    System.out.println("edit enterd");
+    	// 	Uom uom=ser.getOneRecord(id);
+    	//map.put("uom", uom);
+    	return "edit";
     }
 }

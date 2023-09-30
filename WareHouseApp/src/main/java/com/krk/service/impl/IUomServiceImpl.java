@@ -22,21 +22,28 @@ public class IUomServiceImpl implements IUomService{
 	public Integer saveUom(Uom uom) {
 		return repo.save(uom).getId();
 	}
-
+  /**
+   * getting all the data
+   */
 	@Override
 	public List<Uom> getAllUoms() {
 		return repo.findAll();
 	}
-
+  /**
+   * deleting the record eith id
+   */
 	@Override
 	public String deleteUom(Integer id) {
 	  Optional<Uom> opt=repo.findById(id);
 	  if(opt.isPresent()) {
 		  repo.deleteById(id);
 	  }
-	  
 		return "deleted with id no "+id;
 	}
-	
 
+	@Override
+	public Uom getOneRecord(Integer id) {
+		Optional<Uom> opt= repo.findById(id);
+		return opt.get();
+	}
 }

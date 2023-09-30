@@ -13,15 +13,15 @@
 <div class="box">
 <table border="1">
 <tr>
-<td>ID</td><td>Type</td><td>Model</td><td>Description</td><td>Delete</td>
+<td>ID</td><td>Type</td><td>Model</td><td>Description</td><td>Delete</td><td>Edit</td>
 </tr>
 <tr th:each="ob:${data}">
 <td  th:text="${ob.id}"></td>
 <td th:text="${ob.uomType}"></td>
 <td th:text="${ob.uomModel}"></td>
 <td th:text="${ob.description}"></td>
-<td><a th:href="@{/delete?id={data} (data=${ob.id})}"><span><button class="btn btn-primary">Delete</button></span></a></td>
-<td><a><button class="btn btn-dark w-100">Edit</button></a></td>
+<td><a th:href="@{/delete?id={a} (a=${ob.id})}"><span><button class="btn btn-primary">Delete</button></span></a></td>
+<td><a  th:href="@{/edit?id={b} (b=${ob.id})}"><span><button class="btn btn-dark w-100">Edit</button></span></a></td>
 </tr>
 </table>
 </div>
