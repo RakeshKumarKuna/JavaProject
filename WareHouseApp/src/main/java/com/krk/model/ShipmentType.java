@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 @Data
@@ -11,7 +12,8 @@ import lombok.Data;
 @Table(name = "shipment_type_tab")
 public class ShipmentType {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "shipmentgenerator",initialValue = 1,allocationSize = 1,sequenceName = "shipseq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "shipmentgenerator")
 	@Column(name = "shp_id_col")
 	private Integer id;
 	@Column(name = "shp_mod_col")

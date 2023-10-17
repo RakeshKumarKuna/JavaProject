@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>WELCOME TO SHIPMENT TYPE UPDATE PAGE</h3>
+<form th:action="@{/st/update}" method="POST" th:object="${shipmentType}">
+<pre>
+SHIPMENT  ID : <input type="text" th:field="*{id}" readonly>        
+SHIPMENT MODE: <select th:field="*{shipmentMode}">
+				<option value="-1">-SELECT--</option>
+				<option value="AIR">AIR</option>
+				<option value="TRUCK">TRUCK</option>
+				<option value="SHIP">SHIP</option>
+				<option value="TRAIN">TRAIN</option>
+			</select> 
+SHIPMENT CODE: <input type="text" th:field="*{shipmentCode}" readonly/>
+ENABLE SHIPMENT:
+	<input type="radio" th:field="*{enableShipment}" value="YES"> YES
+	<input type="radio" th:field="*{enableShipment}" value="NO"> NO
+SHIPMENT GRADE:
+	<input type="radio" th:field="*{shipmentGrade}" value="A"> A
+	<input type="radio" th:field="*{shipmentGrade}" value="B"> B
+	<input type="radio" th:field="*{shipmentGrade}" value="C"> C
+DESCRIPTION:
+	<textarea th:field="*{description}"  readonly></textarea>	
+	<input type="submit" value="UPDATE SHIPMENT"/>
+</pre>
+</form>
+</body>
+</html>

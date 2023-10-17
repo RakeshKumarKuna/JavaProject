@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>SHIPMENT TYPE DATA PAGE</h3>
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>MODE</th>
+		<th>CODE</th>
+		<th>ENABLED</th>
+		<th>GRADE</th>
+		<th>DESCRIPTION</th>
+		<th>OPERATION</th>
+	</tr>
+	<tr th:each="ob:${list}">
+		<td th:text="${ob.id}"></td>
+		<td th:text="${ob.shipmentMode}"></td>
+		<td th:text="${ob.shipmentCode}"></td>
+		<td th:text="${ob.enableShipment}"></td>
+		<td th:text="${ob.shipmentGrade}"></td>
+		<td th:text="${ob.description}"></td>
+		<td>
+			<a th:href="@{/st/delete?id={data}(data=${ob.id})}">DELETE</a> |
+			<a th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a>
+		</td>
+	</tr>
+</table>	
+<span th:text="${message}"></span>
+</body>
+</html>

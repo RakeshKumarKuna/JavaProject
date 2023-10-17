@@ -72,8 +72,15 @@ public class UomController {
     @GetMapping("/edit")
     public String edit(@RequestParam("id") Integer id,Map map) {
     System.out.println("edit enterd");
-    	// 	Uom uom=ser.getOneRecord(id);
-    	//map.put("uom", uom);
+    		Uom uom=ser.getOneRecord(id);
+    	map.put("uom", uom);
     	return "edit";
+    }
+    @PostMapping("/update")
+    public String update(@ModelAttribute Uom uom,Map map) {
+    	int id=ser.saveUom(uom);
+    	String result="Detailes Updated with id "+id;
+    	map.put("result",result);
+    	return "update";
     }
 }

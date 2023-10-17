@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
+<!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<style>
+.box{
+height:300px;
+width:350px;
+}
+</style>
+</head>
+<body>
+<h2 style="text-align:center">WELCOME TO SHIPMENT TYPE REGISTER PAGE</h2>
+<div class=" d-flex justify-content-center align-items-center w-100 box ">
+
+<form th:action="@{/st/save}" method="POST">
+<div>
+ <label class="form-lable" for="shipmentMode" >Shipment Mode</label>
+            <select name="shipmentMode" class="form-select">
+				<option value="-1">-SELECT--</option>
+				<option value="AIR">AIR</option>
+				<option value="TRUCK">TRUCK</option>
+				<option value="SHIP">SHIP</option>
+				<option value="TRAIN">TRAIN</option>
+			</select>
+</div>
+<div>			 
+<label class="form-lable" for="shipmentCode" >Shipment Code</label>
+ <input class="form-control" type="text" name="shipmentCode"/>
+ </div>
+ <div>
+  <label class="form-lable" for="enableshipment" >Enable Shipment</label>
+	<input type="radio" name="enableShipment" value="YES"> YES
+	<input type="radio" name="enableShipment" value="NO"> NO
+ </div>
+ <div>
+ <label class="form-lable" for="shipmentGrade" >Shipment Grade</label>
+	<input type="radio" name="shipmentGrade" value="A" class="from-control"> A
+	<input type="radio" name="shipmentGrade" value="B"> B
+	<input type="radio" name="shipmentGrade" value="C"> C
+</div>
+<div>	 
+	 <label class="form-lable" for="description" >Descrption</label>
+	<textarea name="description" class="form-lable"></textarea>	
+	<input type="submit" value="ADD SHIPMENT" class="btn btn-primary"/>
+</div>
+</form>
+</div>
+<span th:text="${message}"></span>
+</body>
+</html>
