@@ -44,6 +44,6 @@ public class IUomServiceImpl implements IUomService{
 	@Override
 	public Uom getOneRecord(Integer id) {
 		Optional<Uom> opt= repo.findById(id);
-		return opt.get();
+		return opt.get() ;
 	}
 }
