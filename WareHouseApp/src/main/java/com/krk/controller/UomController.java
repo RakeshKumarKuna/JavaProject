@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
@@ -82,5 +83,10 @@ public class UomController {
     	String result="Detailes Updated with id "+id;
     	map.put("result",result);
     	return "update";
+    }
+    @GetMapping("/report")
+    public String exceldata(Map map) {
+    	map.put("list", ser.getAllUoms());
+    	return "pdf";
     }
 }
