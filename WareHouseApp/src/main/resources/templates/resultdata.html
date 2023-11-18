@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>UOM Data</title>
   <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 <style>
@@ -10,19 +10,29 @@
 </style>
 </head>
 <body bgcolor="cream">
-<div class="box">
-<table border="1" class="table">
-<tr>
-<td>ID</td><td>Type</td><td>Model</td><td>Description</td><td>Delete</td><td>Edit</td>
+<div class="text-center bg-dark text-white" style="height:50px">
+UOM Data
+</div>
+<div class="container">
+<h5>Download Data</h5>
+			 <a th:href="@{/excel}" ><button class="btn btn-primary">Excel</button></a> |
+			 <a th:href="@{/pdf}" ><button class="btn btn-primary">Pdf</button></a>
+<table border="1" class="table table-hover">
+<thead class="thead-dark">
+<tr class="table-dark text-white">
+<th>ID</th><th>Type</th><th>Model</th><th>Description</th><th>Delete</th><th>Edit</th>
 </tr>
+</thead>
+<tbody>
 <tr th:each="ob:${data}">
 <td  th:text="${ob.id}"></td>
 <td th:text="${ob.uomType}"></td>
 <td th:text="${ob.uomModel}"></td>
 <td th:text="${ob.description}"></td>
-<td><a th:href="@{/delete?id={a} (a=${ob.id})}"><span><button class="btn btn-primary">Delete</button></span></a></td>
-<td><a  th:href="@{/edit?id={b} (b=${ob.id})}"><span><button class="btn btn-dark w-100">Edit</button></span></a></td>
+<td><a th:href="@{/delete?id={a} (a=${ob.id})}"><span><button class="btn btn-danger w-75">Delete</button></span></a></td>
+<td><a  th:href="@{/edit?id={b} (b=${ob.id})}"><span><button class="btn btn-dark w-75">Edit</button></span></a></td>
 </tr>
+</tbody>
 </table>
 </div>
  <script src="node_modules/jquery/dist/jquery.js"></script>

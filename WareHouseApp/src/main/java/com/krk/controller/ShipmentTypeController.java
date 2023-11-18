@@ -1,4 +1,7 @@
 package com.krk.controller;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,64 +19,63 @@ import com.krk.service.IShipmentTypeService;
 public class ShipmentTypeController {
 	@Autowired
 	private IShipmentTypeService service;
-	
-	//1. show Register page
+
+	// 1. show Register page
 	@GetMapping("/register")
 	public String showReg() {
 		return "ShipmentTypeRegister";
 	}
-	
-	//2. save
+
+	// 2. save
 	@PostMapping("/save")
-	public String save(
-			@ModelAttribute ShipmentType shipmentType,
-			Model model) 
-	{
+	public String save(@ModelAttribute ShipmentType shipmentType, Model model) {
 		Integer id = service.saveShipmentType(shipmentType);
-		String message = "ShipmentType '"+id+"' Saved";
+		String message = "ShipmentType '" + id + "' Saved";
 		model.addAttribute("message", message);
 		return "ShipmentTypeRegister";
 	}
-	
-	//3. display all
+
+	// 3. display all
 	@GetMapping("/all")
 	public String showAll(Model model) {
 		model.addAttribute("list", service.getAllShipmentTypes());
 		return "ShipmentTypeData";
 	}
-	
-	//4. delete by id
+
+	// 4. delete by id
 	@GetMapping("/delete")
-	public String deleteOne(
-			@RequestParam Integer id, 
-			Model model)
-	{
+	public String deleteOne(@RequestParam Integer id, Model model) {
 		service.deleteShipmentType(id);
-		model.addAttribute("message", "ShipmentType '"+id+"' deleted");
+		model.addAttribute("message", "ShipmentType '" + id + "' deleted");
 		model.addAttribute("list", service.getAllShipmentTypes());
 		return "ShipmentTypeData";
 	}
-	
-	//5. show edit
+
+	// 5. show edit
 	@GetMapping("/edit")
-	public String showEdit(
-			@RequestParam Integer id,
-			Model model)
-	{
+	public String showEdit(@RequestParam Integer id, Model model) {
 		model.addAttribute("shipmentType", service.getOneShipmentType(id));
 		return "ShipmentTypeEdit";
 	}
-	
-	//6. update
+
+	// 6. update
 	@PostMapping("/update")
-	public String doUpdate(
-			@ModelAttribute ShipmentType shipmentType,
-			Model model) 
-	{
+	public String doUpdate(@ModelAttribute ShipmentType shipmentType, Model model) {
 		service.updateShipmentType(shipmentType);
-		model.addAttribute("message", "ShipmentType '"+shipmentType.getId()+"' Updated");
+		model.addAttribute("message", "ShipmentType '" + shipmentType.getId() + "' Updated");
 		model.addAttribute("list", service.getAllShipmentTypes());
-		return "ShipmentTypeData";	
+		return "ShipmentTypeData";
 	}
-	
+
+	@GetMapping("/reportpdf")
+	public String pdfdata(Map map) {
+		map.put("list", service.getAllShipmentTypes());
+			return "shipmentpdf";
+	}
+	@GetMapping("/reportexcel")
+	public String exceldata(Map map) {
+		map.put("list", service.getAllShipmentTypes());
+			return "shipmentexcel";
+	}
+
 }

@@ -11,4 +11,6 @@ public Integer saveUom(Uom uom);
 public List<Uom> getAllUoms();
 public String deleteUom(Integer id);
 public Uom getOneRecord(Integer id);
+public boolean isUomModelExist(String uomModel);
+public List<Object[]> getUomTypeAndCount();
 }

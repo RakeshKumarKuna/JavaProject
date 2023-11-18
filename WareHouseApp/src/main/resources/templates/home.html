@@ -2,19 +2,52 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Warehouse</title>
+<style>
+    .box{
+        margin-top:15px;
+        display: flex;
+        justify-content:space-between;
+        background-color: black;
+        height: 45px;
+        padding-top: 10px;
+        position: sticky;
+        top: 2px;
+    }
+    a{
+        text-decoration: none;
+        font-size: large;
+        box-sizing: border-box;
+    }
+    a:hover{
+        background-color:tomato;
+        transition: 2px;
+    }
+</style>
 </head>
-<body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	
+<body class="container-fluid">
+<header class="box" >
 <div>
-<div>
-<a href="reg"><span></span>Register Here Uom</a>
+   <a href="" style="color:aliceblue;"><span class="bi bi-house-door"></span> Home</a>
 </div>
 <div>
-<a href="getdata"><span></span>Get All Uom Data</a>
+<a href="reg" style="color:aliceblue;">Register Here Uom</a>
 </div>
 <div>
-<a href="st/register"><span></span>Register Here Shipment</a>
+<a href="getdata" style="color:aliceblue;">Get All Uom Data</a>
 </div>
+<div>
+<a href="st/register" style="color:aliceblue;">Register Here Shipment</a>
 </div>
+<div>
+<a href="st/all" style="color:aliceblue;">Get Shipment Data</a>
+</div>
+</header>
+    
 </body>
 </html>

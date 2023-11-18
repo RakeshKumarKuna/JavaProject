@@ -1,44 +1,159 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
-<!-- Option 1: Include in HTML -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<style>
 
-</style>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>UOM Edit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        #userbuttongreen:hover {
+            box-shadow: 4px 6px 4px forestgreen;
+        }
+
+        #userbuttonred:hover {
+            box-shadow: 4px 6px 4px red;
+        }
+         header:hover{
+         box-shadow: 2px 3px 8px rgb(2, 8, 6);
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#errorselect").hide();
+            $("#errormodel").hide();
+            $("#descriptionError").hide();
+            var selectError = false;
+            var modelError = false;
+            var desError = false;
+            //for selecterror
+            function validateselect(){
+                var val=$("#sel").val();
+                if(val==""){
+                    $("#errorselect").show();
+                    $("#errorselect").html("Select Uom type <i class='bi bi-emoji-expressionless'></i>");
+                    $("#errorselect").css("color","red");
+                    selectError=false;
+                }
+                else {
+                    $("#errorselect").hide();
+                    selectError=true;
+                    }
+                    return selectError;
+            }
+            //for modelerror
+            function validatemodel(){
+                var val=$("#model").val();
+                var exp1 = /^[A-Z\-\s]{4,8}$/;
+                var exp=/(?=.*\d)/;
+                if(val==""){
+                    $("#errormodel").show();
+                    $("#errormodel").html("Model can not be empty <i class='bi bi-emoji-expressionless'></i>");
+                    $("#errormodel").css("color","red");
+                    modelError=false;
+                }
+                else if(!exp.test(val)){
+                    $("#errormodel").show();
+                    $("#errormodel").html("Must contain characters includes number <i class='bi bi-emoji-expressionless'></i>");
+                    modelError=false;
+                    }
+                    else{
+                        $("#errormodel").hide();
+                        modelError=true;
+
+                    }
+                return modelError;
+            }
+            //for description
+            function validate_description() {
+                var val = $("#description").val();
+                var exp = /^[A-Za-z0-9\-\.\,\s]{10,100}$/;
+                if(val=='') {
+                    $("#descriptionError").show();
+                    $("#descriptionError").html("Description <b>Can not be empty </b><i class='bi bi-emoji-frown'></i>");
+                    $("#descriptionError").css("color","red");
+                    desError = false;
+                } else if(!exp.test(val)) {
+                    $("#descriptionError").show();
+                    $("#descriptionError").html("Description <b>must be 10-100 chars only!</b><i class='bi bi-emoji-expressionless'></i>");
+                    $("#descriptionError").css("color","red");
+                    desError = false;
+                } else {
+                    $("#descriptionError").hide();
+                    desError = true;
+                }
+                return desError;
+            }
+            //Action to Functions
+            $("#sel").change(function(){
+                validateselect();
+            });
+            $("#model").keyup(function(){
+              validatemodel();
+            });
+            $("#description").keyup(function(){
+                validate_description();
+            });
+            
+            $("#frm").submit(function(){
+                validateselect();      
+                if(validateselect() && validatemodel() && validate_description()){
+                    return true;
+                }
+                else
+                return false;
+            });
+
+
+        });
+    </script>
 </head>
+
 <body>
-<div class=" d-flex justify-content-center align-items-center w-50 box">
-<header><h1 style="text-align: center;">Update Detailes</h1></header>
-<form class="w-75 border border-rounded p-4" th:action="@{/update}"  method="post" th:object="${uom}">
-              <label class="form-lable">ID</label>
-            <input type="text" th:field="*{id}" readonly>
-           <div class="mt-4 ">
-            <label class="form-lable" for="uomType" >Type</label>
-            <select class="form-select w-100" th:field="*{uomType}">
-                <option value="" selected>Select</option>
-                <option value="packing">Packing</option>
-                <option value="nopacking">No-packing</option>
-                <option value="na">Na</option>
-            </select>
-           </div>
-           <div class="mt-4 ">
-            <lable class="form-lable" for="uomModel">Model</lable>
-            <input type="text" class="form-control" th:field="*{uomModel}">
-           </div>
-           <div class="mt-4 ">
-            <lable class="form-lable" for="description">Description</lable>
-            <textarea rows="3" cols="3" class="form-control" th:field="*{description}"></textarea>
-           </div>
-           <div class="mt-4">
-            <input type="submit" class="btn btn-success w-25" value="UpdateUom">
-           </div>
-           </form>
-        </form>
-</div>
+    <div class="container-fluid">
+        <header style="background-color:  rgb(41, 29, 86); color: whitesmoke;height: 50px;border-radius: 20px;">
+            <h1 style="text-align: center;">Update UOM <i class="bi bi-person-bounding-box"></i></h1>
+        </header>
+        <div style="height: 600px; display: flex;justify-content: center;margin-top: 20px;">
+            <form id="frm"
+                style="width:500px;height:500px;border: 2px solid whitesmoke;border-radius: 20px; padding: 5px; box-shadow: 2px 2px 5px black;"
+                th:action="@{/update}" method="post" th:object="${uom}">
+                <label class="form-lable"><h3>ID</h3></label>
+                <input type="text" th:field="*{id}" readonly>
+                <div class="mt-4 ">
+                   <label><h3>Type</h3></label>
+                    <select class="form-select w-100"  th:field="*{uomType}" id="sel">
+                        <option value="" selected>Select</option>
+                        <option value="packing">Packing</option>
+                        <option value="nopacking">No-packing</option>
+                        <option value="na">Na</option>
+                    </select>
+                    <span id="errorselect"></span>
+                </div>
+                <div class="mt-4 ">
+                    <h3>
+                        <lable class="form-lable" for="uomModel">Model</lable>
+                    </h3>
+                    <input type="text" class="form-control" th:field="*{uomModel}" id="model">
+                    <span id="errormodel"></span>
+                </div>
+                <div class="mt-4 ">
+                    <h3>
+                        <lable class="form-lable" for="description">Description</lable>
+                    </h3>
+                    <textarea rows="3" cols="3" class="form-control" th:field="*{description}" id="description"></textarea>
+                    <span id="descriptionError"></span>
+                </div>
+                <div class="mt-4" style="padding-top:20px;">
+                    <input style="margin-left:10px;height: 50px;width:100px;" type="submit" class="btn btn-success"
+                        value="UpdateUom" id="userbuttongreen">
+                    <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
+                        id="userbuttonred">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

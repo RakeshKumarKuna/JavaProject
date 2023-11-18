@@ -3,32 +3,47 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-<h3>SHIPMENT TYPE DATA PAGE</h3>
-<table border="1">
-	<tr>
-		<th>ID</th>
-		<th>MODE</th>
-		<th>CODE</th>
-		<th>ENABLED</th>
-		<th>GRADE</th>
-		<th>DESCRIPTION</th>
-		<th>OPERATION</th>
-	</tr>
-	<tr th:each="ob:${list}">
-		<td th:text="${ob.id}"></td>
-		<td th:text="${ob.shipmentMode}"></td>
-		<td th:text="${ob.shipmentCode}"></td>
-		<td th:text="${ob.enableShipment}"></td>
-		<td th:text="${ob.shipmentGrade}"></td>
-		<td th:text="${ob.description}"></td>
-		<td>
-			<a th:href="@{/st/delete?id={data}(data=${ob.id})}">DELETE</a> |
-			<a th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a>
-		</td>
-	</tr>
-</table>	
-<span th:text="${message}"></span>
+	<div class="container">
+		<div>
+			<div class="bg-dark text-white text-center">
+				<h3>SHIPMENT TYPE DATA PAGE</h3>
+			</div>
+			<div>
+			<h5>Download Data</h5>
+			 <a th:href="@{/st/reportexcel}" ><button class="btn btn-primary">Excel</button></a> |
+			 <a th:href="@{/st/reportpdf}" ><button class="btn btn-primary">Pdf</button></a>
+				<table class="table table-hover">
+					<tr class="bg-dark">
+						<th>ID</th>
+						<th>MODE</th>
+						<th>CODE</th>
+						<th>ENABLED</th>
+						<th>GRADE</th>
+						<th>DESCRIPTION</th>
+						<th>OPERATION</th>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td th:text="${ob.id}"></td>
+						<td th:text="${ob.shipmentMode}"></td>
+						<td th:text="${ob.shipmentCode}"></td>
+						<td th:text="${ob.enableShipment}"></td>
+						<td th:text="${ob.shipmentGrade}"></td>
+						<td th:text="${ob.description}"></td>
+						<td><a class="btn btn-danger" th:href="@{/st/delete?id={data}(data=${ob.id})}">DELETE</a>
+						 <a class="btn btn-info" th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="bg-warning text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

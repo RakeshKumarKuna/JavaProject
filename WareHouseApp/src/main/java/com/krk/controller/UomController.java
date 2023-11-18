@@ -1,5 +1,7 @@
 package com.krk.controller;
+import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,16 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.krk.Charts.UomUtil;
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
+
+import jakarta.servlet.ServletContext;
 
 @Controller
 @RequestMapping("/")
 public class UomController {
 	@Autowired
 	private IUomService ser;
+	@Autowired
+	private UomUtil util;
+	@Autowired
+	private ServletContext context;
 	/**
 	 * 1.Returning the Home Page
 	 * @return Home page
@@ -84,9 +93,35 @@ public class UomController {
     	map.put("result",result);
     	return "update";
     }
-    @GetMapping("/report")
+    @GetMapping("/excel")
     public String exceldata(Map map) {
+    	map.put("list", ser.getAllUoms());
+    	return "excel";
+    }
+    @GetMapping("/pdf")
+    public String pdfdata(Map map) {
     	map.put("list", ser.getAllUoms());
     	return "pdf";
     }
+
+  	@GetMapping("/validate")
+  	public @ResponseBody String validateModel(
+  			@RequestParam String model)
+  	{
+  		String message = "";
+  		if(ser.isUomModelExist(model)) {
+  			message = "Uom Model '"+model+"' already exist";
+  		}
+  		
+  		return message;
+  	}
+  	@GetMapping("/piechart")
+  	public String charts() {
+  	List<Object[]> data=	ser.getUomTypeAndCount();
+  		util.generatePieChart(context.getRealPath("/"), data);
+  		util.generateBarChart(context.getRealPath("/"), data);
+  		System.out.println(context.getRealPath("/"));
+  		return "UomCharts";
+  	}
+    
 }

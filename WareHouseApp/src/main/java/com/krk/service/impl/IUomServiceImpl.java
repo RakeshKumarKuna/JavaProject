@@ -46,4 +46,16 @@ public class IUomServiceImpl implements IUomService{
 		Optional<Uom> opt= repo.findById(id);
 		return opt.get();
 	}
+	
+	@Override
+	public boolean isUomModelExist(String uomModel) {
+		return repo.getUomModelCount(uomModel) > 0 ? true : false;
+	}
+	
+	@Override
+	public List<Object[]> getUomTypeAndCount() {
+		repo.getUomTypeAndCount().forEach(System.out::println);
+     return    repo.getUomTypeAndCount();
+	
+	}
 }
