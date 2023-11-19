@@ -13,9 +13,8 @@ public class WhUserType {
 	@Id
 	@Column(name="wh_id_col")
 	@GeneratedValue(generator = "whusertype")
-	@SequenceGenerator(name="whusertype",sequenceName = "whusertype_seq")
+	@SequenceGenerator(name="whusertype",sequenceName = "whusertype_seq",initialValue = 1,allocationSize = 1)
 	private Integer id;
-	
 	@Column(name="wh_type_col")
 	private String userType;
 	@Column(name="wh_code_col")
