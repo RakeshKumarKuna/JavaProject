@@ -10,8 +10,9 @@ import jakarta.mail.internet.MimeMessage;
 public class ShipmentTypeMailUtil {
 	@Autowired
 	private JavaMailSender mail;
+	Integer count=0;
         public boolean sendemail(
-                                                       String to,String subject,String text
+                                                     String to,String subject,String text
         		                                           ) throws Exception {
                  boolean flag=false;
         		MimeMessage mime=mail.createMimeMessage();
@@ -21,10 +22,12 @@ public class ShipmentTypeMailUtil {
         		//helper.setBcc(bcc);
         		helper.setText(text);
         		//helper.addAttachment(file.getOriginalFilename(), file);
-        		helper.setFrom("hdfcbankcarrer@gmail.com");
-        		helper.addAttachment("image",new ClassPathResource("WhUserType.jpg"));
-        		helper.setPriority(1);
-        		helper.setSentDate(new Date());
+        		helper.setFrom("Warehouse@gmail.com");
+        		//helper.addAttachment("II.mp4",new ClassPathResource("II.mp4"));
+        		helper.setPriority(3);
+        		//helper.setSentDate(new Date());
+        		 boolean b=helper.isValidateAddresses();
+        		 System.out.println(++count);
         		mail.send(mime);
         		flag=true;
               	return flag;

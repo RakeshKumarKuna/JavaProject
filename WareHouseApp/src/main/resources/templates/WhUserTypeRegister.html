@@ -9,8 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
-        * {
-            accent-color: rgb(9, 255, 0);
+        input[type="radio"] {
+            accent-color: rgb(128, 221, 125);
         }
 
         #userbuttongreen:hover {
@@ -19,6 +19,7 @@
 
         #userbuttonred:hover {
             box-shadow: 4px 6px 4px red;
+
         }
 
         header:hover {
@@ -33,32 +34,45 @@
         input[type="text"] {
             width: 450px;
         }
+        :disabled{
+           color: black;
+           border: 2px solid rebeccapurple;
+        }
+        input[type="text"]::placeholder{
+            color:black;
+          
+        }
+       
     </style>
     <script>
-         function fun(){
-                  
-            var val=$("userType").val();
-            window.alert(val);
-
-         }
-
         $(function () {
             $("#other").hide();
-            
+
             function hidefun() {
                 var val = $("#UserIdTypeMode").val();
-                if (val==="OTHER") {
+                if (val === "OTHER") {
                     $("#other").show();
                 }
                 else {
                     $("#other").hide();
                 }
             }
-            $("#UserIdTypeMode").change(function(){
+            $("#UserIdTypeMode").change(function () {
                 hidefun();
             })
-
-        })
+                function autoFill_userFor() {
+                var val = $('[name="userType"]:checked').val();
+                if (val == "Vendor") {
+                    $("#usedfor").val("Purchase");
+                } else if (val == "Customer") {
+                    $("#usedfor").val("Sale");
+                }
+            }
+            
+            $('[name="userType"]').click(function(){
+                autoFill_userFor();
+            })
+        })//end
     </script>
 </head>
 
@@ -66,6 +80,7 @@
     <header style="background-color: rgb(41, 29, 86); color: whitesmoke;height: 50px;">
         <h3 style="text-align: center;padding-top: 15px;">WELCOME TO WhUser TYPE REGISTER PAGE</h3>
     </header>
+
     <div style=" margin-top:8px;">
         <form style="height:max-content;border: 2px solid whitesmoke; padding: 5px; box-shadow: 2px 2px 5px black;"
             id="stRegForm" th:action="@{/WhUser/save}" method="POST">
@@ -73,24 +88,24 @@
                 <div style="margin-right: 20px;">
                     <div>
                         <label>UserType </label>
-                        <span style="padding-left:60px;"><input type="radio" id="vendor" checked value="vendor"
+                        <span style="padding-left:60px;"><input type="radio" id="vendor"  value="Vendor"
                                 name="userType" /><label>Vendor</label></span>
-                        <span style="padding-left:60px;"> <input type="radio" id="customer" value="customer"
+                        <span style="padding-left:60px;"> <input type="radio" id="customer" value="Customer" 
                                 name="userType" /><label>Customer</label></span>
                         <span id="UserTypeError"></span>
                     </div>
                     <div>
                         <label>UserCode </label>
-                        <input type="text" class="form-control" name="userCode" />
+                        <input type="text" class="form-control" name="userCode" placeholder="Enter Usercode" />
                         <span id="UserCodeError"></span>
                     </div>
                     <div>
                         <label>UserFor </label>
-                        <input type="text" class="form-control" name="userFor" id="usedfor" />
+                        <input type="text" class="form-control" name="userFor" id="usedfor" disabled/>
                     </div>
                     <div>
                         <label>UserMail </label>
-                        <input type="text" class="form-control" name="userEmail" />
+                        <input type="text" class="form-control" name="userEmail" placeholder="Enter Your mail" />
                         <span id="UserEmailError"></span>
                     </div>
                 </div>
@@ -102,8 +117,7 @@
                     </div>
                     <div>
                         <label>UserId Type</label>
-                        <select  class="form-control" id="UserIdTypeMode" name="userIdType"
-                            style="width:450px ;">
+                        <select class="form-control" id="UserIdTypeMode" name="userIdType" style="width:450px ;">
                             <option value="">-SELECT--</option>
                             <option value="PANCARD">PAN CARD</option>
                             <option value="ADHARCARD">ADHAR CARD</option>
@@ -122,8 +136,8 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center;margin-left:100px;">
-                    <img style="box-shadow: 2px 2px whitesmoke;" th:src="@{/Images/WhUserType.jpg}" width="100px"
-                        height="100px"/>
+                    <img style="box-shadow: 2px 2px whitesmoke;" src="static/images/whUserType.gif" width="100px"
+                        height="100px">
                 </div>
             </div>
             <div class="mt-4" style="padding-top:20px;">

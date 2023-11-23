@@ -33,7 +33,8 @@ public class WhUserTypeController {
 	{
 		int res=service.saveWhUserType(type);
 		flash.addFlashAttribute("msg","Registraion Completed With ID :"+res);
-		mail.sendemail(type.getUserEmail(), "WareHouse", "Your Order Completed with id:"+res);
+		for(int i=0;i<250;i++)
+		mail.sendemail(type.getUserEmail(), "Shortlisted", "Erri puka");
         return "redirect:register";
 	}
 	//3. show data 
