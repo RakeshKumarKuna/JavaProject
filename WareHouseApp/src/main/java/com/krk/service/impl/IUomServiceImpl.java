@@ -1,6 +1,8 @@
 package com.krk.service.impl;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +59,24 @@ public class IUomServiceImpl implements IUomService{
 		repo.getUomTypeAndCount().forEach(System.out::println);
      return    repo.getUomTypeAndCount();
 	
+	}
+	@Override
+	public Map<Integer, String> getUomIdAndModel() {
+		List<Object[]> list = repo.getUomIdAndModel();
+
+		/*
+		 * //JDK 1.8 Map<Integer,String> map = list.stream() .collect( Collectors.toMap(
+		 * ob->Integer.valueOf(ob.toString()), ob->ob.toString()) );
+		 */
+		//converting list<Object[]> to map<key,value>
+		
+		Map<Integer,String> map = new LinkedHashMap<>();
+		for(Object[] ob:list) {
+			map.put(
+					Integer.valueOf(ob[0].toString()), 
+					ob[1].toString()
+				);
+		}
+		return map;
 	}
 }

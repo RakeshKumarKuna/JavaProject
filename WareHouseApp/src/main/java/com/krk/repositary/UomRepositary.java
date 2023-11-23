@@ -13,5 +13,7 @@ public interface UomRepositary extends JpaRepository<Uom, Integer> {
 	Integer getUomModelCount(String uomModel);
 	@Query(value = "select uom_uom_type_col,count(uom_uom_type_col) from uom_tab group by uom_uom_type_col",nativeQuery = true)
 	List<Object[]> getUomTypeAndCount();
+	@Query("SELECT id,uomModel FROM Uom")
+	List<Object[]> getUomIdAndModel();
 
 }

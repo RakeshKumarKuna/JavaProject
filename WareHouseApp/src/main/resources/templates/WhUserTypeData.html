@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WH USER TYPE DATA PAGE</h3>
+			</div>
+
+			<div class="card-body">
+			<a th:href="@{/whuser/excel}" class="btn btn-warning">EXCEL EXPORT</a> |
+			<a th:href="@{/whuser/pdf}" class="btn btn-warning">PDF EXPORT</a>
+				<table class="table table-hover">
+					<tr class="bg-success text-white">
+						<th>ID</th>
+						<th>TYPE</th>
+						<th>MODLE</th>
+						<th>USER FOR</th>
+						<th>EMAIL</th>
+						<th>CONTACT</th>
+						<th>ID TYPE</th>
+						<th>IF OTHER</th>
+						<th>ID NUMBER</th>
+						<th colspan="2">OPRATIONS</th>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td th:text="${ob.id}"></td>
+						<td th:text="${ob.userType}"></td>
+						<td th:text="${ob.userCode}"></td>
+						<td th:text="${ob.userFor}"></td>
+						<td th:text="${ob.userEmail}"></td>
+						<td th:text="${ob.userContact}"></td>
+						<td th:text="${ob.userIdType}"></td>
+						<td th:text="${ob.ifOther}"></td>
+						<td th:text="${ob.idNumber}"></td>
+						<td><a class="btn btn-danger" th:href="@{/whuser/delete?id={data}(data=${ob.id})}">DELETE</a> </td>
+							<td> <a class="btn btn-info" th:href="@{/whuser/edit?id={data}(data=${ob.id})}">EDIT</a></td>
+					</tr>
+				</table>
+			</div>
+			<!--card body end-->
+			
+			<div class="card-footer bg-warning text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
+			</div> <!-- card footer end -->
+
+		</div> <!-- card end -->
+
+	</div>
+	<!-- container end -->
+</body>
+</html>

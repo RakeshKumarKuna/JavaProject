@@ -54,8 +54,8 @@ public class ShipmentTypeController {
 
 	// 5. show edit
 	@GetMapping("/edit")
-	public String showEdit(@RequestParam Integer id, Model model) {
-		model.addAttribute("shipmentType", service.getOneShipmentType(id));
+	public String showEdit(@RequestParam Integer id, Map model) {
+		model.put("shipmentType",service.getOneShipmentType(id));
 		return "ShipmentTypeEdit";
 	}
 
@@ -73,6 +73,7 @@ public class ShipmentTypeController {
 		map.put("list", service.getAllShipmentTypes());
 			return "shipmentpdf";
 	}
+	
 	@GetMapping("/reportexcel")
 	public String exceldata(Map map) {
 		map.put("list", service.getAllShipmentTypes());

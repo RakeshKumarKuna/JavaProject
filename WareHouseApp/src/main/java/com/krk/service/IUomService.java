@@ -1,9 +1,6 @@
 package com.krk.service;
-
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-
+import java.util.Map;
 import com.krk.model.Uom;
 
 public interface IUomService {
@@ -13,4 +10,5 @@ public String deleteUom(Integer id);
 public Uom getOneRecord(Integer id);
 public boolean isUomModelExist(String uomModel);
 public List<Object[]> getUomTypeAndCount();
+public Map<Integer,String> getUomIdAndModel();
 }

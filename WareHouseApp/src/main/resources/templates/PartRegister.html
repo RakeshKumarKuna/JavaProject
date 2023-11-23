@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>PART REGISTE PAGE</h3>
+            </div>
+
+
+            <div class="card-body">
+                <form th:action="@{/part/save}" method="POST" th:object="${part}">
+
+                    <div class="row">
+                        <div class="col-2">
+                            <label>PART CODE</label>
+                        </div>
+                        <div class="col-5">
+                           <input type="text" th:field="*{partCode}" class="form-control" />
+                        </div>
+                        <div class="col-5">
+                            <span id="partCodeError"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <label>PART DIMENSIONS</label>
+                        </div>
+                        <div class="col-5">
+                          LENGTH: <input type="text" th:field="*{partLen}" class="form-control" />
+                          WIDTH: <input type="text" th:field="*{partWid}" class="form-control" />
+                          HEIGHT: <input type="text" th:field="*{partHght}" class="form-control" />
+                        </div>
+                        <div class="col-5">
+                            <span id="partDimError"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <label>BASE COST</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" th:field="*{partCost}" class="form-control"/>
+                        </div>
+                        <div class="col-5">
+                            <span id="partCostError"></span>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label>BASE CURRENCY</label>
+                        </div>
+                        <div class="col-5">
+                            <select th:field="*{partCurrency}" class="form-control">
+                                <option value="">-SELECT-</option>
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                                <option value="AUD">AUD</option>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <span id="partCurrencyError"></span>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <label>UOM</label>
+                        </div>
+                        <div class="col-5">
+                            <select th:field="*{uom.id}" class="form-control">
+                                <option value="">-SELECT-</option>
+                                <option th:each="ob:${uoms}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <span id="partCurrencyError"></span>
+                        </div>
+                    </div>
+                    <input type="submit" value="ADD PART" class="btn btn-success" />
+                </form>
+            </div>
+            <!--card body end-->
+
+            <div class="card-footer bg-info text-white text-center" th:if="${message != null}">
+                <span th:text="${message}" ></span>
+            </div>
+
+        </div>
+        <!--card end-->
+    </div>
+ </body>
+
+</html>

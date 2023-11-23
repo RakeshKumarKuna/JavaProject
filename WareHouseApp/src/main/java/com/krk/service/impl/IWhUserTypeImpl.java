@@ -1,6 +1,6 @@
 package com.krk.service.impl;
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,30 +10,40 @@ import com.krk.repositary.WhUserTypeRepositary;
 import com.krk.service.IWhUserTypeService;
 @Service
 public class IWhUserTypeImpl implements IWhUserTypeService {
-     @Autowired
+	@Autowired
 	private WhUserTypeRepositary repo;
+	
 	@Override
-	public Integer saveWhUserType(WhUserType whuser) {
-		return repo.save(whuser).getId();
+	public Integer saveWhUserType(WhUserType whUserType) {
+		return repo.save(whUserType).getId();
 	}
 
 	@Override
-	public List<WhUserType> getAllWhUserType() {
+	public List<WhUserType> getAllWhUserTypes() {
 		return repo.findAll();
 	}
 
 	@Override
-	public String deleteWhUserType(Integer id) {
-		Optional<WhUserType> opt=repo.findById(id);
-		if(opt.isPresent()) {
-		repo.deleteById(id);
-		}
-     return "Deleted With id "+id;
+	public void deleteWhUserType(Integer id) {
+		WhUserType whUserType  = getOneWhUserType(id);
+		repo.delete(whUserType);
+	}
+	
+	@Override
+	public WhUserType getOneWhUserType(Integer id) {
+		WhUserType whUserType = repo.findById(id).orElseThrow(() -> new WhUserTypeNotFound("Warehouse User Type "+id+" Not exist"));
+		return whUserType;
+	}
+	
+	@Override
+	public void updateWhUserType(WhUserType whUserType) {
+		repo.save(whUserType);
 	}
 
 	@Override
-	public WhUserType getOneRecord(Integer id) {
-		WhUserType opt=repo.findById(id).orElseThrow(()->new WhUserTypeNotFound("WhUser Not Found with id :"+id));
-		return opt;
+	public boolean isWhUserMailIdExist(String email) {
+		//return repo.getWhUserEmailCount(email)>0?true:false;
+		return repo.getWhUserEmailCount(email)>0;
 	}
+
 }
