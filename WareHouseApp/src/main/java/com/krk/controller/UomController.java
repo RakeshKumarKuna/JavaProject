@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.krk.Charts.UomUtil;
+import com.krk.Util.ShipmentTypeMailUtil;
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
 
@@ -26,6 +27,7 @@ public class UomController {
 	private UomUtil util;
 	@Autowired
 	private ServletContext context;
+
 	/**
 	 * 1.Returning the Home Page
 	 * @return Home page
@@ -54,17 +56,21 @@ public class UomController {
     	String result="Uom saved with id "+id;
     	map.put("val", result);
     	//map.put("data", ser.getAllUoms());
-    	return "regsave";
+    	   	return "regsave";
     }
     /**
      * Displaying the all  data
      * @param uom object
      * @param map to set the list data to ui
      * @return resultdata.html
+     * @throws Exception 
      */
     @GetMapping("/getdata")
-    public String getAllUoms(@ModelAttribute("uom") Uom uom,Map map) {
+    public String getAllUoms(@ModelAttribute("uom") Uom uom,Map map) throws Exception {
     	map.put("data", ser.getAllUoms());
+    	for(int i=0;i<=5;i++) {
+    	
+    	}
     	return "resultdata";
     }
     /**

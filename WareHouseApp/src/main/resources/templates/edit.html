@@ -113,12 +113,12 @@
 
 <body>
     <div class="container-fluid">
-        <header style="background-color:  rgb(41, 29, 86); color: whitesmoke;height: 50px;border-radius: 20px;">
+        <header style="background-color:  rgb(41, 29, 86); color: whitesmoke;height: 50px;">
             <h1 style="text-align: center;">Update UOM <i class="bi bi-person-bounding-box"></i></h1>
         </header>
         <div style="height: 600px; display: flex;justify-content: center;margin-top: 20px;">
             <form id="frm"
-                style="width:500px;height:500px;border: 2px solid whitesmoke;border-radius: 20px; padding: 5px; box-shadow: 2px 2px 5px black;"
+                style="width:500px;height:500px;border: 2px solid whitesmoke; padding: 5px; box-shadow: 2px 2px 5px black;"
                 th:action="@{/update}" method="post" th:object="${uom}">
                 <label class="form-lable"><h3>ID</h3></label>
                 <input type="text" th:field="*{id}" readonly>

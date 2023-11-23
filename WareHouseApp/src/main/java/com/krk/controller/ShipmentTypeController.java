@@ -30,6 +30,7 @@ public class ShipmentTypeController {
 	@PostMapping("/save")
 	public String save(@ModelAttribute ShipmentType shipmentType, Model model) {
 		Integer id = service.saveShipmentType(shipmentType);
+		
 		String message = "ShipmentType '" + id + "' Saved";
 		model.addAttribute("message", message);
 		return "ShipmentTypeRegister";

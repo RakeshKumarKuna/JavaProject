@@ -1,74 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>WhUserTypeRegistration</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<style>
-    *{
-        accent-color: rgb(9, 255, 0);
-    }
-    #userbuttongreen:hover {
-        box-shadow: 4px 6px 4px forestgreen;
-    }
-    #userbuttonred:hover {
-        box-shadow: 4px 6px 4px red;
-    }
-    header:hover {
-        box-shadow: 2px 3px 8px rgb(2, 8, 6);
-    }
-    label{
-        font-size: x-small;
-        padding-top: 5px;
-    }
-    input[type="text"]{
-        width:450px;
-    }
-</style>
+    <meta charset="ISO-8859-1">
+    <title>WhUserTypeRegistration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        * {
+            accent-color: rgb(9, 255, 0);
+        }
+
+        #userbuttongreen:hover {
+            box-shadow: 4px 6px 4px forestgreen;
+        }
+
+        #userbuttonred:hover {
+            box-shadow: 4px 6px 4px red;
+        }
+
+        header:hover {
+            box-shadow: 2px 3px 8px rgb(2, 8, 6);
+        }
+
+        label {
+            font-size: x-small;
+            padding-top: 5px;
+        }
+
+        input[type="text"] {
+            width: 450px;
+        }
+    </style>
+    <script>
+         function fun(){
+                  
+            var val=$("userType").val();
+            window.alert(val);
+
+         }
+
+        $(function () {
+            $("#other").hide();
+            
+            function hidefun() {
+                var val = $("#UserIdTypeMode").val();
+                if (val==="OTHER") {
+                    $("#other").show();
+                }
+                else {
+                    $("#other").hide();
+                }
+            }
+            $("#UserIdTypeMode").change(function(){
+                hidefun();
+            })
+
+        })
+    </script>
 </head>
+
 <body class="container-fluid">
     <header style="background-color: rgb(41, 29, 86); color: whitesmoke;height: 50px;">
         <h3 style="text-align: center;padding-top: 15px;">WELCOME TO WhUser TYPE REGISTER PAGE</h3>
     </header>
     <div style=" margin-top:8px;">
-        <form
-            style="height:max-content;border: 2px solid whitesmoke; padding: 5px; box-shadow: 2px 2px 5px black;"
+        <form style="height:max-content;border: 2px solid whitesmoke; padding: 5px; box-shadow: 2px 2px 5px black;"
             id="stRegForm" th:action="@{/WhUser/save}" method="POST">
             <div style="display: flex; margin-right: 20px;">
-               <div style="margin-right: 20px;">
-                <div>
-                    <label>UserType </label>
-                     <span style="padding-left:60px;"><input type="radio"   value="vendor"  name="userType"/><label>Vendor</label></span>
-                     <span style="padding-left:60px;"> <input type="radio"    value="customer" name="userType"/><label>Customer</label></span>
-                    <span id="UserTypeError"></span>
+                <div style="margin-right: 20px;">
+                    <div>
+                        <label>UserType </label>
+                        <span style="padding-left:60px;"><input type="radio" id="vendor" checked value="vendor"
+                                name="userType" /><label>Vendor</label></span>
+                        <span style="padding-left:60px;"> <input type="radio" id="customer" value="customer"
+                                name="userType" /><label>Customer</label></span>
+                        <span id="UserTypeError"></span>
+                    </div>
+                    <div>
+                        <label>UserCode </label>
+                        <input type="text" class="form-control" name="userCode" />
+                        <span id="UserCodeError"></span>
+                    </div>
+                    <div>
+                        <label>UserFor </label>
+                        <input type="text" class="form-control" name="userFor" id="usedfor" />
+                    </div>
+                    <div>
+                        <label>UserMail </label>
+                        <input type="text" class="form-control" name="userEmail" />
+                        <span id="UserEmailError"></span>
+                    </div>
                 </div>
-                <div>
-                    <label>UserCode </label>
-                     <input type="text"  class="form-control"   name="userCode"/> 
-                    <span id="UserCodeError"></span>
-                </div>
-                <div>
-                    <label>UserFor </label>
-                     <input type="text"  class="form-control"   name="userFor"/> 
-                </div>
-                <div>
-                    <label>UserMail </label>
-                     <input type="text"  class="form-control"   name="userEmail"/> 
-                    <span id="UserEmailError"></span>
-                </div>
-               </div>
                 <div style="margin-left: 40px;">
                     <div>
                         <label>UserContact </label>
-                         <input type="text"  class="form-control"   name="userContact"/> 
+                        <input type="text" class="form-control" name="userContact" />
                         <span id="UserContactError"></span>
                     </div>
                     <div>
                         <label>UserId Type</label>
-                        <select class="form-control" id="UserIdTypeMode" name="userIdType" style="width:450px ;">
+                        <select  class="form-control" id="UserIdTypeMode" name="userIdType"
+                            style="width:450px ;">
                             <option value="">-SELECT--</option>
                             <option value="PANCARD">PAN CARD</option>
                             <option value="ADHARCARD">ADHAR CARD</option>
@@ -77,27 +112,31 @@
                         </select>
                         <span id="UserIDTypeError"></span>
                     </div>
-                    <div id="other">
-                        <label>If Other</label>
-                        <input type="text" name="ifOther" class="form-control"/><br>
+                    <div>
+                        <div id="other">
+                            <label>If Other</label>
+                            <input type="text" name="ifOther" class="form-control" /><br>
+                        </div>
                         <label>IDNumber</label>
-                        <input type="text" name="idNumber" class="form-control"/>
+                        <input type="text" name="idNumber" class="form-control" />
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center;margin-left:100px;">
-                    <img style="box-shadow: 2px 2px whitesmoke;" src="static/images/whUserType.gif" width="100px" height="100px">
+                    <img style="box-shadow: 2px 2px whitesmoke;" th:src="@{/Images/WhUserType.jpg}" width="100px"
+                        height="100px"/>
                 </div>
             </div>
             <div class="mt-4" style="padding-top:20px;">
-                <input style="margin-left:10px;height: 50px;width:100px; margin-right:50px;" type="submit" value="REGISTER"
-                    class="btn btn-success" id="userbuttongreen" />
+                <input style="margin-left:10px;height: 50px;width:100px; margin-right:50px;" type="submit"
+                    value="REGISTER" class="btn btn-success" id="userbuttongreen" />
                 <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
                     id="userbuttonred">Reset</button>
             </div>
         </form>
     </div>
     <div class="text-center " th:if="${msg != null}" style=" margin-top:20px;">
-    <h4><span  style="color: forestgreen;" th:text="${msg}"></span></h4><i class="bi bi-award-fill"></i>
+        <h4><span style="color: forestgreen;" th:text="${msg}"></span></h4><i class="bi bi-award-fill"></i>
     </div>
 </body>
+
 </html>
