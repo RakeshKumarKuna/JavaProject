@@ -29,12 +29,11 @@ public class WhUserTypeController {
 		return "WhUserTypeRegister";
 	}
 	 @PostMapping("/save")
-	public String save(@ModelAttribute WhUserType type,RedirectAttributes flash) throws Exception
+	public String save(@ModelAttribute  WhUserType type,RedirectAttributes flash) throws Exception
 	{
 		int res=service.saveWhUserType(type);
-		flash.addFlashAttribute("msg","Registraion Completed With ID :"+res);
-		for(int i=0;i<250;i++)
-		mail.sendemail(type.getUserEmail(), "Shortlisted", "Erri puka");
+		flash.addFlashAttribute("msg","Registraion Completed,Check your mail ");
+		mail.sendemail(type.getUserEmail(), "WareHouse", "Hello User !"+"\n"+"Your Registration completed with ID" +res);
         return "redirect:register";
 	}
 	//3. show data 

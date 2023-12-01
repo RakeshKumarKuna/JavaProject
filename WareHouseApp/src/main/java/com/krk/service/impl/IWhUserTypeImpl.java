@@ -25,8 +25,7 @@ public class IWhUserTypeImpl implements IWhUserTypeService {
 
 	@Override
 	public void deleteWhUserType(Integer id) {
-		WhUserType whUserType  = getOneWhUserType(id);
-		repo.delete(whUserType);
+		repo.deleteById(id);
 	}
 	
 	@Override

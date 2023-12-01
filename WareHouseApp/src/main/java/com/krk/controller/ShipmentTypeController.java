@@ -31,7 +31,7 @@ public class ShipmentTypeController {
 	public String save(@ModelAttribute ShipmentType shipmentType, Model model) {
 		Integer id = service.saveShipmentType(shipmentType);
 		
-		String message = "ShipmentType '" + id + "' Saved";
+		String message = "ShipmentType '" + id + "' Saved check you mail for conformation";
 		model.addAttribute("message", message);
 		return "ShipmentTypeRegister";
 	}

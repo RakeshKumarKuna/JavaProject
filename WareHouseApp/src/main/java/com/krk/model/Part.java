@@ -1,6 +1,8 @@
 package com.krk.model;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,26 +19,20 @@ public class Part {
 	@GeneratedValue
 	@Column(name="prt_id_col")
 	private Integer id;
-	
 	@Column(name="prt_code_col")
 	private String partCode;
 	@Column(name="prt_len_col")
 	private Double partLen;
-	
 	@Column(name="prt_wid_col")
 	private Double partWid;
 	@Column(name="prt_hght_col")
 	private Double partHght;
-	
 	@Column(name="prt_cost_col")
 	private Double partCost;
 	@Column(name="prt_curr_col")
 	private String partCurrency;
-	
 	//Association Mappings
-	@ManyToOne
+	@ManyToOne(targetEntity = Uom.class)
 	@JoinColumn(name="uom_id_fk_col")
 	private Uom uom; //HAS-A
-	
-	
 }
