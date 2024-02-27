@@ -35,4 +35,7 @@ public class Part {
 	@ManyToOne(targetEntity = Uom.class)
 	@JoinColumn(name="uom_id_fk_col")
 	private Uom uom; //HAS-A
+	@ManyToOne
+	@JoinColumn(name = "order_id_fk_col")
+	private OrderMethod order;
 }

@@ -3,11 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>UOM Data</title>
-  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-<style>
-
-</style>
+ <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+ <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 <body bgcolor="cream">
 <div class="text-center bg-dark text-white" style="height:50px">
@@ -29,14 +26,33 @@ UOM Data
 <td th:text="${ob.uomType}"></td>
 <td th:text="${ob.uomModel}"></td>
 <td th:text="${ob.description}"></td>
-<td><a th:href="@{/delete?id={a} (a=${ob.id})}"><span><button class="btn btn-danger w-75">Delete</button></span></a></td>
+<td><button class="btn btn-danger w-75" id="button-custom" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button></td>
+<!-- *********************** -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Are you want to delete ?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a th:href="@{/delete?id={a} (a=${ob.id})}"><button type="button" class="btn btn-primary" >Delete</button></a></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ******************************** -->
 <td><a  th:href="@{/edit?id={b} (b=${ob.id})}"><span><button class="btn btn-dark w-75">Edit</button></span></a></td>
 </tr>
 </tbody>
 </table>
 </div>
- <script src="node_modules/jquery/dist/jquery.js"></script>
- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-
+<script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+ <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
