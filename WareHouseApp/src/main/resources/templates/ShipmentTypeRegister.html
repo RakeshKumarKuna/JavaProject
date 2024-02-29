@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
+
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Insert title here</title>
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 	<style>
-	     *{
-			accent-color: rgb(9, 255, 0);;
-	     	}
-		#userbuttongreen:hover {
-			box-shadow: 4px 6px 4px forestgreen;
+		* {
+			accent-color: rgb(9, 255, 0);
 		}
 
-		#userbuttonred:hover {
-			box-shadow: 4px 6px 4px red;
+		header {
+			border-radius: 15px;
+			font-size: medium;
+			background-color: #FFFBEF;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
-
-		header:hover {
-			box-shadow: 2px 3px 8px rgb(2, 8, 6);
-		}
+		.main-box1{
+            padding-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px 3px solid red;
+            width: 1200px;
+        }
+        .backbutton{
+            position: fixed;
+            top: 60px;
+            left: 20px;
+        }
 	</style>
 	<!-- <script>
 		$(document).ready(function () {
@@ -159,17 +171,20 @@
 
 <body>
 	<div class="container-fluid">
-	<div><a href="../">Back</a></div>
-		<header style="background-color: rgb(41, 29, 86); color: whitesmoke;height: 50px;">
-			<h3 style="text-align: center;padding-top: 15px;">WELCOME TO SHIPMENT TYPE REGISTER PAGE</h3>
+		<header>
+			<h3 style="text-align: center;">WELCOME TO SHIPMENT TYPE REGISTER PAGE</h3>
 		</header>
-		<div style="display: flex;justify-content:center; margin-top:8px;">
+		<div class="backbutton">
+			<button class="btn btn-outline-dark"><i class="bi bi-arrow-left-circle-fill"></i>
+			   <a>Back</a></button>
+		   </div>
+		<div class="main-box1">
 			<form
-				style="width:500px;height:500px;border: 2px solid whitesmoke;padding: 5px; box-shadow: 2px 2px 5px black;"
+			class="main-box w-50 border-3 bg-opacity-50"
 				id="stRegForm" th:action="@{/st/save}" method="POST">
 				<div>
-					<h3><label>SHIPMENT MODE</label></h3>
-					<select class="form-control" id="shipmentMode" name="shipmentMode">
+					<h6><label>SHIPMENT MODE</label></h6>
+					<select class="form-select" id="shipmentMode" name="shipmentMode">
 						<option value="">-SELECT--</option>
 						<option value="AIR">AIR</option>
 						<option value="TRUCK">TRUCK</option>
@@ -178,12 +193,12 @@
 					</select>
 					<span id="shipmentModeError"></span>
 				</div>
-				<div>
-					<h3><label>SHIPMENT CODE</label></h3>
+				<div class="mt-2">
+					<h6><label>SHIPMENT CODE</label></h6>
 					<input type="text" class="form-control" name="shipmentCode" />
 					<span id="shipmentCodeError"></span>
 				</div>
-				<div>
+				<div class="mt-2">
 					<label>ENABLE SHIPMENT</label>
 					<input type="radio" value="YES" name="enableShipment"><span>Yes</span>
 					<input type="radio" value="NO" name="enableShipment">
@@ -191,7 +206,7 @@
 					<span id="enableShipmentError"></span>
 				</div>
 
-				<div>
+				<div class="mt-2">
 					<label>SHIPMENT GRADE</label>
 					<input type="radio" value="A" name="grade">
 					<span>A</span><input type="radio" value="B" name="shipmentGrade">
@@ -199,8 +214,8 @@
 					<span>C</span>
 					<span id="shipmentGradeError"></span>
 				</div>
-				<div>
-					<h3><label>DESCRIPTION</label></h3>
+				<div class="mt-2">
+					<h6><label>DESCRIPTION</label></h6>
 					<textarea class="form-control" name="description"></textarea>
 					<span id="descriptionError"></span>
 				</div>
@@ -217,8 +232,8 @@
 			<span th:text="${message}"></span>
 		</div>
 	</div>
-<script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
- <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

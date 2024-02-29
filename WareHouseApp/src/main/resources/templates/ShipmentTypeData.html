@@ -33,9 +33,29 @@
 						<td th:text="${ob.enableShipment}"></td>
 						<td th:text="${ob.shipmentGrade}"></td>
 						<td th:text="${ob.description}"></td>
-						<td><a class="btn btn-danger" th:href="@{/st/delete?id={data}(data=${ob.id})}">DELETE</a>
-						 <a class="btn btn-info" th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a></td>
-					</tr>
+						<td><button class="btn btn-danger w-75" id="button-custom" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button></td>
+                        <td> <a class="btn btn-info" th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a></td>
+<!-- *********************** -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Do you want to delete ?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a class="btn btn-danger" th:href="@{/st/delete?id={data}(data=${ob.id})}"><button type="button"  >Delete</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ******************************** -->
+</tr>
 				</table>
 			</div>
 			<div class="bg-warning text-white text-center"
