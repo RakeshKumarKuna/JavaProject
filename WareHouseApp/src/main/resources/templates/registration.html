@@ -7,36 +7,17 @@
     <title>UOM Register</title>
     <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <style>
- 
-       a{
+        a {
             text-decoration: none;
-            color: gray;
-        }
-        header {
-            border-radius: 15px;
-            font-size: medium;
-            background-color:#FFFBEF;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-       
-        .main-box1{
-            padding-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 3px 3px solid red;
-            width: 1200px;
-        }
-        .backbutton{
-            position: fixed;
-            top: 60px;
-            left: 20px;
+            color: white;
         }
         body{
-            background-image: url(/WareHouseApp/src/main/resources/static/Images/uomback.jpg);
+            background-image: url(Images/background5.png);
+            color: white;
+            font-weight: 600;
         }
     </style>
     <script>
@@ -52,7 +33,7 @@
                 var val = $("#sel").val();
                 if (val == "wrg") {
                     $("#errorselect").show();
-                    $("#errorselect").html("Select Uom type <i class='bi bi-emoji-expressionless'></i>");
+                    $("#errorselect").html("Select Uom type");
                     $("#errorselect").css("color", "red");
                     selectError = false;
                 }
@@ -62,55 +43,19 @@
                 }
                 return selectError;
             }
-            //for modelerror
-            function validatemodel() {
-                var val = $("#model").val();
-                var exp1 = /^[A-Z\-\s]{4,8}$/;
-                var exp = /(?=.*\d)/;
-                if (val == "") {
-                    $("#errormodel").show();
-                    $("#errormodel").html("Model can not be empty <i class='bi bi-emoji-expressionless'></i>");
-                    $("#errormodel").css("color", "red");
-                    modelError = false;
-                }
-                else if (!exp.test(val)) {
-                    $("#errormodel").show();
-                    $("#errormodel").html("Must contain characters includes number <i class='bi bi-emoji-expressionless'></i>");
-                    modelError = false;
-                }
-                else {
-                    //ajax call start
-                    $.ajax({
-                        url: 'validate',
-                        data: { 'model': val },
-                        success: function (resTxt) {
-                            if (resTxt == '') { //no error
-                                $("#errormodel").hide();
-                                modelError = true;
-                            } else {
-                                $("#errormodel").show();
-                                $("#errormodel").html(resTxt);
-                                $("#errormodel").css("color", "red");
-                                modelError = false;
-                            }
-                        }
-                    });
-                    //ajax call end
-                }
-                return modelError;
-            }
+
             //for description
             function validate_description() {
                 var val = $("#description").val();
                 var exp = /^[A-Za-z0-9\-\.\,\s]{10,100}$/;
                 if (val == '') {
                     $("#descriptionError").show();
-                    $("#descriptionError").html("Description <b>Can not be empty </b><i class='bi bi-emoji-frown'></i>");
+                    $("#descriptionError").html("Description <b>Can not be empty </b>");
                     $("#descriptionError").css("color", "red");
                     desError = false;
                 } else if (!exp.test(val)) {
                     $("#descriptionError").show();
-                    $("#descriptionError").html("Description <b>must be 10-100 chars only!</b><i class='bi bi-emoji-expressionless'></i>");
+                    $("#descriptionError").html("Description <b>must be 10-100 chars only!</b>");
                     $("#descriptionError").css("color", "red");
                     desError = false;
                 } else {
@@ -140,57 +85,52 @@
             });
         });
     </script>
+
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header>
-            <h3 style="text-align: center;">UOM Registration <i class="bi bi-person-bounding-box"></i></h3>
-        </header>
-        <div class="backbutton">
-         <button class="btn btn-outline-dark"><i class="bi bi-arrow-left-circle-fill"></i>
-            <a href="/WareHouseApp/" >Back</a></button>
-        </div>
-        <div class="main-box1">
-            <form class="main-box w-50 border-3 bg-opacity-50"
-                th:action="@{/save}" method="post" id="frm">
-                <div>
-                    <div class="mt-2">
-                        <label class="form-lable" for="uomType">
-                            <h5>Type</h5>
-                        </label>
-                        <select class="form-select w-100" name="uomType" id="sel">
-                            <option value="wrg" selected>Select</option>
-                            <option value="packing">Packing</option>
-                            <option value="nopacking">No-packing</option>
-                            <option value="na">Na</option>
-                        </select>
-                        <span id="errorselect"></span>
-                    </div>
-                    <div class="mt-2 ">
-                        <lable class="form-lable mt-4" for="uomModel">
-                            <h5>Model</h5>
-                        </lable>
-                        <input type="text" class="form-control w-100" name="uomModel" id="model">
-                        <span id="errormodel"></span>
-                    </div>
-                    <div class="mt-2">
-                        <lable class="form-lable" for="description">
-                            <h5>Description</h5>
-                        </lable>
-                        <textarea rows="3" cols="3" class="form-control" name="description" id="description"></textarea>
-                        <span id="descriptionError"></span>
-                    </div>
-                    <div class="mt-2">
-                        <input style="margin-left:10px;height: 50px;width:100px;" type="submit" class="btn btn-success"
-                            value="AddUom" id="userbuttongreen">
-                        <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
-                            id="userbuttonred">Reset</button>
-                    </div>
-            </form>
-        </div>
+    <header class="d-flex justify-content-around mt-2">
+        <div><button class="btn btn-primary"><a href="/WareHouseApp/"><span class="bi bi-house">Home</span></a></button></div>
+        <h4 class="text-center font-weight-bolder text-white bg-dark rounded-2"  style="font-weight: 900;">UOM Registration <span class="bi bi-person-workspace"></span></h4>
+        <div><button class="btn btn-dark"><a href="piechart">View uom Data</a></button></div>
+    </header>
+    <div class="d-flex justify-content-center">
+        <form class="main-box w-50 border-3 bg-opacity-50" th:action="@{/save}" method="post" id="frm">
+            <div>
+                <div class="mt-2">
+                    <label class="form-lable" for="uomType">
+                        <h5>Type</h5>
+                    </label>
+                    <select class="form-select w-100" name="uomType" id="sel">
+                        <option value="wrg" selected>Select</option>
+                        <option value="packing">Packing</option>
+                        <option value="nopacking">No-packing</option>
+                        <option value="na">Na</option>
+                    </select>
+                    <span id="errorselect"></span>
+                </div>
+                <div class="mt-2 ">
+                    <lable class="form-lable mt-4" for="uomModel">
+                        <h5>Model</h5>
+                    </lable>
+                    <input type="text" class="form-control w-100" name="uomModel" id="model">
+                    <span id="errormodel"></span>
+                </div>
+                <div class="mt-2">
+                    <lable class="form-lable" for="description">
+                        <h5>Description</h5>
+                    </lable>
+                    <textarea rows="3" cols="3" class="form-control" name="description" id="description"></textarea>
+                    <span id="descriptionError"></span>
+                </div>
+                <div class="mt-2">
+                    <input style="margin-left:10px;height: 50px;width:100px;" type="submit" class="btn btn-success"
+                        value="AddUom" id="userbuttongreen">
+                    <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
+                        id="userbuttonred">Reset</button>
+                </div>
+        </form>
     </div>
-    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
-    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
+
 </html>

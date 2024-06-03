@@ -36,7 +36,6 @@ public class OrderMethod {
 	)
 	@Column(name="ord_acpt_col")
 	private List<String> orderAcpt;
-	
 	@Column(name="ord_description_col")
 	private String description;
 }

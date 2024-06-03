@@ -4,18 +4,20 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>UOM Edit</title>
-     <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
-     <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <style>
-        #userbuttongreen:hover {
-            box-shadow: 4px 6px 4px forestgreen;
+        a {
+            text-decoration: none;
+            color: white;
         }
 
-        #userbuttonred:hover {
-            box-shadow: 4px 6px 4px red;
-        }
-         header:hover{
-         box-shadow: 2px 3px 8px rgb(2, 8, 6);
+        body {
+            background-image: url(Images/background5.png);
+            color: black;
+            font-weight: 600;
         }
     </style>
     <script>
@@ -27,56 +29,56 @@
             var modelError = false;
             var desError = false;
             //for selecterror
-            function validateselect(){
-                var val=$("#sel").val();
-                if(val==""){
+            function validateselect() {
+                var val = $("#sel").val();
+                if (val == "") {
                     $("#errorselect").show();
                     $("#errorselect").html("Select Uom type <i class='bi bi-emoji-expressionless'></i>");
-                    $("#errorselect").css("color","red");
-                    selectError=false;
+                    $("#errorselect").css("color", "red");
+                    selectError = false;
                 }
                 else {
                     $("#errorselect").hide();
-                    selectError=true;
-                    }
-                    return selectError;
+                    selectError = true;
+                }
+                return selectError;
             }
             //for modelerror
-            function validatemodel(){
-                var val=$("#model").val();
+            function validatemodel() {
+                var val = $("#model").val();
                 var exp1 = /^[A-Z\-\s]{4,8}$/;
-                var exp=/(?=.*\d)/;
-                if(val==""){
+                var exp = /(?=.*\d)/;
+                if (val == "") {
                     $("#errormodel").show();
                     $("#errormodel").html("Model can not be empty <i class='bi bi-emoji-expressionless'></i>");
-                    $("#errormodel").css("color","red");
-                    modelError=false;
+                    $("#errormodel").css("color", "red");
+                    modelError = false;
                 }
-                else if(!exp.test(val)){
+                else if (!exp.test(val)) {
                     $("#errormodel").show();
                     $("#errormodel").html("Must contain characters includes number <i class='bi bi-emoji-expressionless'></i>");
-                    modelError=false;
-                    }
-                    else{
-                        $("#errormodel").hide();
-                        modelError=true;
+                    modelError = false;
+                }
+                else {
+                    $("#errormodel").hide();
+                    modelError = true;
 
-                    }
+                }
                 return modelError;
             }
             //for description
             function validate_description() {
                 var val = $("#description").val();
                 var exp = /^[A-Za-z0-9\-\.\,\s]{10,100}$/;
-                if(val=='') {
+                if (val == '') {
                     $("#descriptionError").show();
                     $("#descriptionError").html("Description <b>Can not be empty </b><i class='bi bi-emoji-frown'></i>");
-                    $("#descriptionError").css("color","red");
+                    $("#descriptionError").css("color", "red");
                     desError = false;
-                } else if(!exp.test(val)) {
+                } else if (!exp.test(val)) {
                     $("#descriptionError").show();
                     $("#descriptionError").html("Description <b>must be 10-100 chars only!</b><i class='bi bi-emoji-expressionless'></i>");
-                    $("#descriptionError").css("color","red");
+                    $("#descriptionError").css("color", "red");
                     desError = false;
                 } else {
                     $("#descriptionError").hide();
@@ -85,23 +87,23 @@
                 return desError;
             }
             //Action to Functions
-            $("#sel").change(function(){
+            $("#sel").change(function () {
                 validateselect();
             });
-            $("#model").keyup(function(){
-              validatemodel();
+            $("#model").keyup(function () {
+                validatemodel();
             });
-            $("#description").keyup(function(){
+            $("#description").keyup(function () {
                 validate_description();
             });
-            
-            $("#frm").submit(function(){
-                validateselect();      
-                if(validateselect() && validatemodel() && validate_description()){
+
+            $("#frm").submit(function () {
+                validateselect();
+                if (validateselect() && validatemodel() && validate_description()) {
                     return true;
                 }
                 else
-                return false;
+                    return false;
             });
 
 
@@ -111,18 +113,18 @@
 
 <body>
     <div class="container-fluid">
-        <header style="background-color:  rgb(41, 29, 86); color: whitesmoke;height: 50px;">
-            <h1 style="text-align: center;">Update UOM <i class="bi bi-person-bounding-box"></i></h1>
-        </header>
-        <div style="height: 600px; display: flex;justify-content: center;margin-top: 20px;">
-            <form id="frm"
-                style="width:500px;height:500px;border: 2px solid whitesmoke; padding: 5px; box-shadow: 2px 2px 5px black;"
-                th:action="@{/update}" method="post" th:object="${uom}">
-                <label class="form-lable"><h3>ID</h3></label>
-                <input type="text" th:field="*{id}" readonly>
-                <div class="mt-4 ">
-                   <label><h3>Type</h3></label>
-                    <select class="form-select w-100"  th:field="*{uomType}" id="sel">
+         <header class="d-flex justify-content-around mt-2">
+        <div><button class="btn btn-primary"><a href="/WareHouseApp/"><span class="bi bi-house">Home</span></a></button></div>
+        <h4 class="text-center font-weight-bolder text-white bg-dark rounded-2"  style="font-weight: 900;">Edit UOM <span class="bi bi-person-workspace"></span></h4>
+        <div><button class="btn btn-dark"><a href="piechart">View uom Data</a></button></div>
+    </header>
+        <div class="d-flex justify-content-center">
+            <form class="w-50" id="frm" th:action="@{/update}" method="post" th:object="${uom}">
+                <label class="form-lable">ID</label>
+                <input type="text" th:field="*{id}" readonly class="form-control">
+                <div class="mt-1">
+                    <label>Type</label>
+                    <select class="form-select" th:field="*{uomType}" id="sel">
                         <option value="" selected>Select</option>
                         <option value="packing">Packing</option>
                         <option value="nopacking">No-packing</option>
@@ -130,30 +132,24 @@
                     </select>
                     <span id="errorselect"></span>
                 </div>
-                <div class="mt-4 ">
-                    <h3>
-                        <lable class="form-lable" for="uomModel">Model</lable>
-                    </h3>
+                <div class="mt-2">
+                    <lable class="form-lable" for="uomModel">Model</lable>
                     <input type="text" class="form-control" th:field="*{uomModel}" id="model">
                     <span id="errormodel"></span>
                 </div>
-                <div class="mt-4 ">
-                    <h3>
-                        <lable class="form-lable" for="description">Description</lable>
-                    </h3>
-                    <textarea rows="3" cols="3" class="form-control" th:field="*{description}" id="description"></textarea>
+                <div class="mt-2">
+                    <lable class="form-lable" for="description">Description</lable>
+                    <textarea rows="2" cols="3" class="form-control" th:field="*{description}"
+                        id="description"></textarea>
                     <span id="descriptionError"></span>
                 </div>
-                <div class="mt-4" style="padding-top:20px;">
-                    <input style="margin-left:10px;height: 50px;width:100px;" type="submit" class="btn btn-success"
-                        value="UpdateUom" id="userbuttongreen">
-                    <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
-                        id="userbuttonred">Reset</button>
+                <div class="mt-2" style="padding-top:20px;">
+                    <input type="submit" class="btn btn-success" value="UpdateUom">
+                    <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
             </form>
         </div>
     </div>
-    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
- <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
+
 </html>

@@ -1,105 +1,164 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Warehouse</title>
-<style>
-    header{
+    <meta charset="ISO-8859-1">
+    <title>Warehouse</title>
+    <link rel="shortcut icon" href="http://someWebsiteLocation/images/imageName.ico">
+    <style>
+        header {
             position: sticky;
             top: 0px;
         }
-    .box{
-        margin-top:15px;
-        display: flex;
-        justify-content:space-between;
-        background-color: black;
-        height: 45px;
-        padding-top: 10px;
-        position: sticky;
-        top: 2px;
-    }
-    a{
-        text-decoration: none;
-        font-size: large;
-        box-sizing: border-box;
-    }
-    a:hover{
-        background-color:tomato;
-        transition: 2px;
-    }
-</style>
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+        button a {
+            color: whitesmoke;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+        .sample{
+            color: white;
+            font-weight: 900;
+        }
+       body {
+     
+        }
+    </style>
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
-<body class="container-fluid">
-<header class="box" >
- <a class="btn btn-dark" style="color: whitesmoke; background-color: black;" type="link"
-            data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample">
-            <i class="bi bi-justify"></i>
-        </a>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
+
+<body >
+    <div class="btn btn-group justify-content-evenly w-100" style="background-color: rgb(202, 231, 231);">
+        <button type="button" class="btn btn-dark"><a href="/"><span class="bi bi-house-door"></span> Home</a></button>
+        <button type="button" class="btn btn-dark"><a href="reg">Register Here Uom</a></button>
+        <button type="button" class="btn btn-dark"><a href="getdata">Get All Uom Data</a></button>
+        <button type="button" class="btn btn-dark"><a href="st/register">Register Here Shipment</a></button>
+        <button type="button" class="btn btn-dark"><a href="st/all">Get Shipment Data</a></button>
+        <button type="button" class="btn btn-dark"><a href="part/register">Parts</a>
+            <button class="btn btn-dark"><a href="WhUser/register">Users</a>
+    </div>
+    <div style="position: absolute; top:20; left:20; opacity: 0.3;">
+        <div style="background-color:lightgreen;">
+            <img th:src="@{Images/mainback.jpg}" width="1266px" height="600px" style="z-index: -1;">
+        </div>
+    </div>
+    <div style="height:600px; padding-top: 110px; background-color: black;color: white; z-index: 1;">
+        <h2 class="text-center" style="font-weight: 900; color:white;">WHAT
+            MAKES OUR WAREHOUSE DIFFERENT?</h2>
+        <div style="display: flex; justify-content: space-evenly; padding-top: 90px;">
+            <div style="width:fit-content;">
+                <div class="text-center">
+                    <img th:src="@{Images/logistics.webp}" width="110px" height="110px" />
+                </div>
                 <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
-                    images, lists, etc.
+                    <h4 class="text-center sample">Largest
+                         Network</h4>
                 </div>
-                <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+            </div>
+            <div>
+                <div class="text-center ">
+                    <img th:src="@{Images/powerfulltech.webp}" width="110px" height="110px" />
+                </div>
+                <div>
+                    <h4 class="text-center sample" >Powerful
+                        Technology</h4>
+                </div>
+            </div>
+            <div>
+                <div class="text-center">
+                    <img th:src="@{Images/TeamGame.webp}" width="110px" height="110px" />
+                </div>
+                <div>
+                    <h4 class="text-center sample" >Team
+                        Game</h4>
+                </div>
+            </div>
+            <div>
+                <div class="text-center">
+                    <img th:src="@{Images/flexblemodel.webp}" width="110px" height="110px" />
+                </div>
+                <div>
+                    <h4 class="text-center sample" >Flexible
+                        Model</h4>
                 </div>
             </div>
         </div>
+    </div>
+     <div>
+        <div class="row">
+            <div class="col-6"><img  th:src="@{Images/DB-1.webp}"></div>
+            <div class="col-6">
+                <h4 class="text-center pt-5" style="font-weight: 800;">CONTROL TOWER</h4>
+                <h6 class="text-center pt-2 text-danger" style="font-weight: 800;">Get Access to Most Powerful System</h6>
+                 <p>A control tower with full visibility & real time insights to minimize excess inventory and free up working capital while avoiding stock-outs and increasing revenue</p>
+                <button class="btn btn-danger text-center"><a href="piechart">Go To Charts</a></button>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-3">
+            <div class="col-6 pt-4 ">
+                <h4 class="text-center pt-5" style="font-weight: 800;">INVENTORY & ORDER MANAGEMENT</h4>
+                <p class="text-center">An enterprise grade Inventory and order management system to manage orders, inventory, operations, transportation, and analytics across programmes and providers from one platform.</p>
+            </div>
+            <div class="col-6">
+            <img th:src="@{Images/DB-2.webp}">   
+            </div>
+        </div>
+    </div>
+    
+      <div class="mt-5" style="background-color:rgb(255, 246, 247); height: 400px;">
+        <h2 class="text-center pt-4" style="font-weight: 900;">SOME OF OUR HAPPY CLIENTS</h2>
+        <div class="d-flex justify-content-around mt-5">
+        <img th:src="@{Images/Picture1.webp}" alt="" width="100" height="100" class="rounded-pill">
+        <img th:src="@{Images/Picture2.webp}" alt="" width="100" height="100" class="rounded-pill">
+        <img th:src="@{Images/Picture3.webp}" alt="" width="100" height="100" class="rounded-pill" >
+        <img th:src="@{Images/Picture4.webp}" alt="" width="100" height="100" class="rounded-pill">
+        <img th:src="@{Images/Picture11.webp}" width="100" height="100">
+        </div>
+        <div class="d-flex justify-content-around mt-4 ">
+            <img th:src="@{Images/Picture5.webp}" alt="" width="100" height="100" class="rounded-pill">
+            <img th:src="@{Images/Picture8.webp}" alt="" width="100" height="100" class="rounded-pill">
+            <img th:src="@{Images/Picture9.webp}" alt="" width="100" height="100" class="rounded-pill">
+            <img th:src="@{Images/Picture10.webp}" alt="" width="100" height="100" class="rounded-pill">
+            <img th:src="@{Images/Picture12.webp}" width="100" height="100">
 
-<div>
-   <a href="/" style="color:aliceblue;"><span class="bi bi-house-door"></span> Home</a>
-</div>
-<div>
-<a href="reg" style="color:aliceblue;">Register Here Uom</a>
-</div>
-<div>
-<a href="getdata" style="color:aliceblue;">Get All Uom Data</a>
-</div>
-<div>
-<a href="st/register" style="color:aliceblue;">Register Here Shipment</a>
-</div>
-<div>
-<a href="st/all" style="color:aliceblue;">Get Shipment Data</a>
-</div>
-</header>
-<div style="padding-top: 250px;">
-    <h2 class="text-center" style="font-weight: 900; color: black;">WHAT MAKES OUR WAREHOUSE DIFFERENT?</h2>
-    <div style="display:flex;justify-content:space-evenly;padding-top:90px;">
-        <div style="width: 200px;">
-            <div class="text-center"><img th:src="@{Images/logistics.webp}" width="110px" height="110px"/></div>
-            <div><h4 class="text-center" style="font-weight:1000;color: black;">Largest Logistics Network</h4></div>
         </div>
-        <div>
-            <div class="text-center"><img th:src="@{Images/powerfulltech.webp}" width="110px" height="110px"/></div>
-            <div><h4 class="text-center" style="font-weight:1000;color: black;">Powerful Technology</h4></div>
-        </div>
-        <div>
-            <div class="text-center"><img th:src="@{Images/TeamGame.webp}" width="110px" height="110px"/></div>
-            <div><h4 class="text-center" style="font-weight:1000;color: black;">Team Game</h4></div>
-        </div>
-        <div>
-            <div class="text-center"><img th:src="@{Images/flexblemodel.webp}" width="110px" height="110px"/></div>
-            <div><h4 class="text-center" style="font-weight:1000;color: black;">Flexible Model</h4></div>
-        </div>
+    </div>
+    
 
-    </div>   
-</div>
- <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
- <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <footer class="mt-5">
+        <div class="row">
+            <div class="col-3">
+                <h4 style="font-weight: 900;color: orangered;" class="mr-2 "><span
+                        class="bi bi-house-fill"></span>&nbsp;WAREHOUSE</h4>
+                <div class="pt-2">&nbsp;<span class="bi bi-envelope-at-fill rounded-2 me-2 "
+                        style="color: orangered;"></span><a style="text-decoration: none; color: black;"
+                        href="mailto:warehouse@gmail.com">warehouse@gmail.com</a></div>
+                <div class="pt-2">&nbsp;<span style="color: orangered;" class="bi bi-telephone-fill"></span><a
+                        style="text-decoration: none; color: black;" href="tel:7032591213">+917032591213</a></div>
+                <div class="pt-2 d-flex justify-content-around font-weight-bolder w-75" style="color: orangered;"><span
+                        class="bi bi-facebook"></span><span class="bi bi-instagram"></span><span
+                        class="bi bi-twitter"></span> <span class="bi bi-youtube"></span></div>
+            </div>
+            <div class="col-3">
+                <h5 style="font-weight: 800;">Solutions</h5>
+                <p class="font-weight-bolder">Fulfillment</p>
+                <p> Storage</p>
+                <p> Supply chain technology</p>
+                <p>3PL</p>
+            </div>
+            <div class="col-3">
+                <h5 style="font-weight: 800;">Resources</h5>
+                <p>Blog</p>
+                <p>About Us</p>
+            </div>
+            <div class="col-3">
+                <p style="font-weight: 400;">knowing you're always on the best service deal.</p>
+                <button type="button" class="btn btn-dark mt-2">SignUp Now</button>
+            </div>
+        </div>
+    </footer>
+    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>

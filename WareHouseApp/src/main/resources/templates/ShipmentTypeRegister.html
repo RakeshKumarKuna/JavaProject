@@ -4,36 +4,22 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+	  <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<style>
-		* {
-			accent-color: rgb(9, 255, 0);
-		}
-
-		header {
-			border-radius: 15px;
-			font-size: medium;
-			background-color: #FFFBEF;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		.main-box1{
-            padding-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 3px 3px solid red;
-            width: 1200px;
+		 a {
+            text-decoration: none;
+            color: white;
         }
-        .backbutton{
-            position: fixed;
-            top: 60px;
-            left: 20px;
+        body{
+            background-image: url(Images/background5.png);
+            color: black;
+            font-weight: 600;
         }
 	</style>
-	<!-- <script>
+	<script>
 		$(document).ready(function () {
 			// hide error section
 			$("#shipmentModeError").hide();
@@ -52,7 +38,7 @@
 			//define validate function
 			function validate_shipmentMode() {
 				var val = $("#shipmentMode").val();
-				if (val=="") {
+				if (val == "") {
 					$("#shipmentModeError").show();
 					$("#shipmentModeError").html("Select <b> Shipment Mode</b>");
 					$("#shipmentModeError").css("color", "red");
@@ -64,7 +50,7 @@
 				return shipmentModeError;
 			}
 
-			/* function validate_shipmentCode() {
+			function validate_shipmentCode() {
 				var val = $("#shipmentCode").val();
 				var exp = /^[A-Z\-\s]{4,12}$/;
 				if (val == '') {
@@ -84,7 +70,7 @@
 
 				return shipmentCodeError;
 			}
- */
+
 			function validate_enableShipment() {
 				var len = $("[name='enableShipment']:checked").length;
 				if (len == 0) {
@@ -113,7 +99,7 @@
 				return shipmentGradeError;
 			}
 
-			function validate_description() {
+			/* function validate_description() {
 				var val = $("#description").val();
 				var exp = /^[A-Za-z0-9\-\.\,\s]{10,100}$/;
 				if (val == '') {
@@ -131,7 +117,7 @@
 					descriptionError = true;
 				}
 				return descriptionError;
-			}
+			} */
 			//link with action
 			$("#shipmentMode").change(function () {
 				validate_shipmentMode();
@@ -152,7 +138,7 @@
 
 			//onsubmit
 			$("#stRegForm").submit(function () {
-				
+
 				validate_shipmentMode();
 				validate_enableShipment();
 				validate_shipmentGrade();
@@ -166,22 +152,18 @@
 				else return false;
 			});
 		});
-	</script> -->
+	</script>
 </head>
 
 <body>
-	<div class="container-fluid">
-		<header>
-			<h3 style="text-align: center;">WELCOME TO SHIPMENT TYPE REGISTER PAGE</h3>
-		</header>
-		<div class="backbutton">
-			<button class="btn btn-outline-dark"><i class="bi bi-arrow-left-circle-fill"></i>
-			   <a>Back</a></button>
-		   </div>
-		<div class="main-box1">
-			<form
-			class="main-box w-50 border-3 bg-opacity-50"
-				id="stRegForm" th:action="@{/st/save}" method="POST">
+	<div >
+		<header class="d-flex justify-content-around mt-2">
+        <div><button class="btn btn-primary"><a href="/WareHouseApp/"><span class="bi bi-house">Home</span></a></button></div>
+        <h4 class="text-center font-weight-bolder text-white bg-dark rounded-2"  style="font-weight: 900;">WELCOME TO SHIPMENT TYPE REGISTER PAGE <span class="bi bi-person-workspace"></span></h4>
+        <div><button class="btn btn-dark"><a href="all">View Shipment Data</a></button></div>
+    </header>
+		<div class="d-flex justify-content-center">
+			<form class="w-50 border-3 bg-opacity-50" id="stRegForm" th:action="@{/st/save}" method="POST">
 				<div>
 					<h6><label>SHIPMENT MODE</label></h6>
 					<select class="form-select" id="shipmentMode" name="shipmentMode">
@@ -202,16 +184,15 @@
 					<label>ENABLE SHIPMENT</label>
 					<input type="radio" value="YES" name="enableShipment"><span>Yes</span>
 					<input type="radio" value="NO" name="enableShipment">
-					<sapn>No</sapn>
+					<span>No</span>
 					<span id="enableShipmentError"></span>
 				</div>
 
 				<div class="mt-2">
 					<label>SHIPMENT GRADE</label>
-					<input type="radio" value="A" name="grade">
-					<span>A</span><input type="radio" value="B" name="shipmentGrade">
-					<span>B</span><input type="radio" value="C" name="shipmentGrade">
-					<span>C</span>
+					<input type="radio" value="A" name="shipmentGrade"><span>A</span>
+					<input type="radio" value="B" name="shipmentGrade"><span>B</span>
+					<input type="radio" value="C" name="shipmentGrade"><span>C</span>
 					<span id="shipmentGradeError"></span>
 				</div>
 				<div class="mt-2">
@@ -219,21 +200,16 @@
 					<textarea class="form-control" name="description"></textarea>
 					<span id="descriptionError"></span>
 				</div>
-				<div class="mt-4" style="padding-top:20px;">
-					<input style="margin-left:10px;height: 50px;width:100px;" type="submit" value="REGISTER"
-						class="btn btn-success" id="userbuttongreen" />
-					<button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
-						id="userbuttonred">Reset</button>
+				<div class="mt-2" style="padding-top:20px;">
+					<button  type="submit"  class="btn btn-success">Register</button>
+					<button  type="reset" class="btn btn-danger">Reset</button>
 				</div>
 			</form>
 		</div>
-
 		<div th:if="${message != null}">
-			<span th:text="${message}"></span>
+			<span class="text-center text-success" th:text="${message}"></span>
 		</div>
 	</div>
-	<script src="../node_modules/jquery/dist/jquery.js"></script>
-	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
