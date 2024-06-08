@@ -4,105 +4,88 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Insert title here</title>
-<link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <style>
+        body {
+            font-size: small;
+            font-weight: 100;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        body {
+            background-image: url(Images/background5.png);
+            color: black;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
+        <div>
+            <header class="d-flex justify-content-around mt-2">
+                <div><button class="btn btn-primary"><a href="/WareHouseApp/"><span
+                                class="bi bi-house">Home</span></a></button></div>
+                <h4 class="text-center font-weight-bolder text-white bg-dark" style="font-weight: 900;">WELCOME TO PART
+                    REGISTER PAGE </h4>
+                <div><button class="btn btn-dark"><a href="all">View Part Data</a></button></div>
+            </header>
+            <div class="d-flex justify-content-center ">
+                <form class="w-50" th:action="@{/part/save}" method="POST" th:object="${part}">
+                    <dl>
+                        <dt>PART CODE</dt>
+                        <dd><input type="text" th:field="*{partCode}" class="form-control" /></dd>
+                        <span id="partCodeError"></span>
+                        <dt>PART DIMENSIONS</dt>
+                        <dd class="row">
+                            <span class="col">LENGTH: <input type="text" th:field="*{partLen}"
+                                    class="form-control" /></span>
+                            <span class="col">WIDTH: <input type="text" th:field="*{partWid}"
+                                    class="form-control" /></span>
+                            <span class="col">HEIGHT: <input type="text" th:field="*{partHght}"
+                                    class="form-control" /></span>
+                        </dd>
+                        <span id="partDimError"></span>
 
-        <div class="card">
-            <div class="card-header bg-primary text-white text-center">
-                <h3>PART REGISTE PAGE</h3>
-            </div>
-
-
-            <div class="card-body">
-                <form th:action="@{/part/save}" method="POST" th:object="${part}">
-                    <div class="row">
-                        <div class="col-2">
-                            <label>PART CODE</label>
-                        </div>
-                        <div class="col-5">
-                           <input type="text" th:field="*{partCode}" class="form-control" />
-                        </div>
-                        <div class="col-5">
-                            <span id="partCodeError"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>PART DIMENSIONS</label>
-                        </div>
-                        <div class="col-5">
-                          LENGTH: <input type="text" th:field="*{partLen}" class="form-control" />
-                          WIDTH: <input type="text" th:field="*{partWid}" class="form-control" />
-                          HEIGHT: <input type="text" th:field="*{partHght}" class="form-control" />
-                        </div>
-                        <div class="col-5">
-                            <span id="partDimError"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-2">
-                            <label>BASE COST</label>
-                        </div>
-                        <div class="col-5">
-                            <input type="text" th:field="*{partCost}" class="form-control"/>
-                        </div>
-                        <div class="col-5">
-                            <span id="partCostError"></span>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="row">
-                        <div class="col-2">
-                            <label>BASE CURRENCY</label>
-                        </div>
-                        <div class="col-5">
-                            <select th:field="*{partCurrency}" class="form-control">
+                        <dt>BASE COST</dt>
+                        <dd><input type="text" th:field="*{partCost}" class="form-control" /></dd>
+                        <span id="partCostError"></span>
+                        <dt>BASE CURRENCY</dt>
+                        <dd><select th:field="*{partCurrency}" class="form-control">
                                 <option value="">-SELECT-</option>
                                 <option value="INR">INR</option>
                                 <option value="USD">USD</option>
                                 <option value="AUD">AUD</option>
                             </select>
-                        </div>
-                        <div class="col-5">
-                            <span id="partCurrencyError"></span>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="row">
-                        <div class="col-2">
-                            <label>UOM</label>
-                        </div>
-                        <div class="col-5">
-                            <select th:field="*{uom.id}" class="form-control">
+                        </dd>
+                        <span id="partCurrencyError"></span>
+                        <dt>UOM</dt>
+                        <dd><select th:field="*{uom.id}" class="form-control">
                                 <option value="">-SELECT-</option>
                                 <option th:each="ob:${uoms}" th:value="${ob.key}" th:text="${ob.value}"></option>
                             </select>
-                        </div>
-                        <div class="col-5">
-                            <span id="partCurrencyError"></span>
-                        </div>
+                        </dd>
+                        <span id="partCurrencyError"></span>
+                    </dl>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
-                    <input type="submit" value="ADD PART" class="btn btn-success" />
                 </form>
             </div>
-            <!--card body end-->
-
-            <div class="card-footer bg-info text-white text-center" th:if="${message != null}">
-                <span th:text="${message}" ></span>
+            <div class="bg-info text-white text-center" th:if="${message != null}">
+                <span th:text="${message}"></span>
             </div>
 
         </div>
-        <!--card end-->
     </div>
-    <script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
- <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
- </body>
+</body>
 
 </html>

@@ -3,8 +3,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
- <link rel="stylesheet" href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="/WareHouseApp/node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet"
+	href="/WareHouseApp/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+	<style>
+	 a{
+	 text-decoration:none;
+	 color:white;
+	 }
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -13,9 +21,9 @@
 				<h3>SHIPMENT TYPE DATA PAGE</h3>
 			</div>
 			<div>
-			<h5>Download Data</h5>
-			 <a th:href="@{/st/reportexcel}" ><button class="btn btn-primary">Excel</button></a> |
-			 <a th:href="@{/st/reportpdf}" ><button class="btn btn-primary">Pdf</button></a>
+				<h5>Download Data</h5>
+				<a th:href="@{/st/reportexcel}"><button class="btn btn-primary">Excel</button></a>
+				| <a th:href="@{/st/reportpdf}"><button class="btn btn-primary">Pdf</button></a>
 				<table class="table table-hover">
 					<tr class="bg-dark">
 						<th>ID</th>
@@ -33,38 +41,21 @@
 						<td th:text="${ob.enableShipment}"></td>
 						<td th:text="${ob.shipmentGrade}"></td>
 						<td th:text="${ob.description}"></td>
-						<td><button class="btn btn-danger w-75" id="button-custom" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button></td>
-                        <td> <a class="btn btn-info" th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a></td>
-<!-- *********************** -->
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h4>Do you want to delete ?</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-danger" th:href="@{/st/delete?id={data}(data=${ob.id})}"><button type="button"  >Delete</button></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ******************************** -->
-</tr>
+						<td><button class="btn btn-danger" type="button">
+								<a th:href="@{/st/delete?id={data}(data=${ob.id})}">Delete</a>
+							</button></td>
+						<td><a class="btn btn-info"
+							th:href="@{/st/edit?id={data}(data=${ob.id})}">EDIT</a></td>
+					</tr>
 				</table>
 			</div>
-			<div class="bg-warning text-white text-center"
-				th:if="${message != null}">
-				<span th:text="${message}"></span>
+			<div th:if="${message != null}">
+				<span class="text-center text-danger" th:text="${message}"></span>
 			</div>
 		</div>
 	</div>
 	<script src="/WareHouseApp/node_modules/jquery/dist/jquery.js"></script>
- <script src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script
+		src="/WareHouseApp/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
