@@ -19,10 +19,9 @@ import lombok.Data;
 public class OrderMethod {
 	@Id
 	@GeneratedValue(generator = "ordermethod")
-	@SequenceGenerator(name="ordermethod",sequenceName = "ordermethod_seq")
+	@SequenceGenerator(name="ordermethod",sequenceName = "ordermethod_seq",initialValue = 1002,allocationSize = 1)
 	@Column(name="ord_id_col")
 	private Integer id;
-	
 	@Column(name="ord_mode_col")
 	private String orderMode;
 	@Column(name="ord_code_col")

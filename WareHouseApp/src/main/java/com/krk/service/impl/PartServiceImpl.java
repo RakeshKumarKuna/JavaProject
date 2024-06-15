@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.krk.exception.PartNotFoundException;
 import com.krk.model.Part;
-import com.krk.repositary.PartRepository;
+import com.krk.repository.PartRepository;
 import com.krk.service.IPartService;
 
 @Service

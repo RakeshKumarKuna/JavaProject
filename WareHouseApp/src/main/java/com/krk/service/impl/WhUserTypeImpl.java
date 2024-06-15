@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.krk.exception.WhUserTypeNotFound;
 import com.krk.model.WhUserType;
-import com.krk.repositary.WhUserTypeRepositary;
+import com.krk.repository.WhUserTypeRepositary;
 import com.krk.service.IWhUserTypeService;
 @Service
-public class IWhUserTypeImpl implements IWhUserTypeService {
+public class WhUserTypeImpl implements IWhUserTypeService {
 	@Autowired
 	private WhUserTypeRepositary repo;
 	

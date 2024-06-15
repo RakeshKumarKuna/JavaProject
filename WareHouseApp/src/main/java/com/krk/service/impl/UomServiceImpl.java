@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.krk.model.Uom;
-import com.krk.repositary.UomRepositary;
+import com.krk.repository.UomRepositary;
 import com.krk.service.IUomService;
 @Service
-public class IUomServiceImpl implements IUomService{
+public class UomServiceImpl implements IUomService{
 	//injecting repo interface here
     @Autowired
 	private UomRepositary repo;

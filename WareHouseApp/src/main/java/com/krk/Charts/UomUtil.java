@@ -14,7 +14,6 @@ public class UomUtil {
 	public void generatePieChart(String path,List<Object[]> data) {
 		DefaultPieDataset dataset=new DefaultPieDataset();
 		for(Object[] ob:data) {
-			//key,val
 			dataset.setValue(String.valueOf(ob[0]), Double.valueOf(ob[1].toString()));
 		}
 		JFreeChart chart=ChartFactory.createPieChart("UOM Type And Count", dataset);

@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Setter;
 @Data
 @Entity
 @Table(name="wh_user_type_tab")
@@ -30,5 +31,8 @@ public class WhUserType {
 	@Column(name="wh_if_other_col")
 	private String ifOther;
 	@Column(name="wh_id_number_col")
-	private String idNumber;	
+	private String idNumber;
+	@Column(name="user_uuid")
+	@Setter
+	private String uuid;
 }

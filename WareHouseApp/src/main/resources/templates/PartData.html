@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>PartData</title>
+<link rel="shortcut icon" href="Images/blockchain.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+ <div>
+ 	<table  class="table table-secondary">
+			<thead class="thead-dark">
+				<tr class="table-dark text-white text-center">
+					<th>ID</th>
+					<th>PartCode</th>
+					<th>PartLen</th>
+					<th>PartWid</th>
+					<th>PartHght</th>
+					<th>PartCost</th>
+					<th>PartCurrency</th>
+					<th>OrderMethod</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ob:${data}" class="text-center">
+					<td th:text="${ob.id}"></td>
+					<td th:text="${ob.partCode}"></td>
+					<td th:text="${ob.partLen}"></td>
+					<td th:text="${ob.partWid}"></td>
+					<td th:text="${ob.partHght}"></td>
+					<td th:text="${ob.partCost}"></td>
+					<td th:text="${ob.partCurrency}"></td>
+					<td><button class="btn btn-danger"><a th:href="@{/delete?id={a} (a=${ob.id})}">Delete</a></button></td>
+					<td><a th:href="@{/edit?id={b} (b=${ob.id})}"><span><button
+									class="btn btn-dark w-75">Edit</button></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+ 
+ </div>
+</body>
+</html>

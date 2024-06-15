@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.krk.exception.ShipmentTypeNotFoundException;
 import com.krk.model.ShipmentType;
-import com.krk.repositary.ShipmentTypeRepository;
+import com.krk.repository.ShipmentTypeRepository;
 import com.krk.service.IShipmentTypeService;
 
 @Service
-public class IShipmentTypeImpl implements IShipmentTypeService {
+public class ShipmentTypeImpl implements IShipmentTypeService {
 
 	
 	@Autowired

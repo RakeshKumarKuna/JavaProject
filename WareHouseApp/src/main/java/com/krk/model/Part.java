@@ -9,8 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
-
 @Data
 @Entity
 @Table(name="part_tab")
@@ -35,6 +35,8 @@ public class Part {
 	@ManyToOne(targetEntity = Uom.class)
 	@JoinColumn(name="uom_id_fk_col")
 	private Uom uom; //HAS-A
+	//multipilicity annotation
+	@Transient
 	@ManyToOne
 	@JoinColumn(name = "order_id_fk_col")
 	private OrderMethod order;

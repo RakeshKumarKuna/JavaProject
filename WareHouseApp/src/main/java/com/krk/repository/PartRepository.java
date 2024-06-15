@@ -1,4 +1,4 @@
-package com.krk.repositary;
+package com.krk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

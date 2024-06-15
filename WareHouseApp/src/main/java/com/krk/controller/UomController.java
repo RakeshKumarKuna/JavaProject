@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.krk.Charts.UomUtil;
-import com.krk.Util.ShipmentTypeMailUtil;
+import com.krk.Util.MailUtil;
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
 

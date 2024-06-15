@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.krk.model.Document;
-import com.krk.repositary.DocumentRepo;
+import com.krk.repository.DocumentRepo;
 import com.krk.service.IDocumentService;
 @Service
 public class DocumentServiceImpl implements IDocumentService {
