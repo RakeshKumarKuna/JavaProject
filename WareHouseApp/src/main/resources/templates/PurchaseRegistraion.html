@@ -21,7 +21,7 @@
 
         body {
             background-image: url(/Images/background5.png);
-            color: black;
+            color: white;
             font-weight: 600;
         }
     </style>
@@ -43,10 +43,24 @@
                         <dt>Order Code</dt>
                         <dd><input type="text" th:field="*{orderCode}" class="form-control" /></dd>
                         <span id="orderCodeError"></span>
+                          <dt>Shipment Code</dt>
+                        <dd>
+                        <select th:field="*{shipmentType.id}" class="form-control">
+                        <option value="">Select</option>
+                        <option  th:each="ob:${shimpmenttypes}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                        </select>
+                        </dd>
+                        <dt>Vendor</dt>
+                        <dd>
+                        <select th:field="*{whuserType.id}" class="form-control">
+                        <option value="">Select</option>
+                        <option  th:each="ob:${whusertypes}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                        </select>
+                        </dd>
                         
                         <dt>refernceNumber</dt>
                         <dd class="row">
-                          <input type="text" th:field="*{refernceNumber}">
+                          <input type="text" th:field="*{refernceNumber}" class="form-control">
                         </dd> 
                             <dt>QualityCheck</dt>
                         <dd>
@@ -55,11 +69,11 @@
                         </dd>
                         <dt>Status</dt>
                         <dd>
-                           <input type="text" th:field="*{status}" >
+                           <input type="text" th:field="*{status}" class="form-control" >
                         </dd> 
                         <dt>description</dt>
                         <dd>
-                        <input type="text" th:field="*{description}">
+                        <input type="text" th:field="*{description}" class="form-control">
                         </dd>
                     </dl>
                     <div>

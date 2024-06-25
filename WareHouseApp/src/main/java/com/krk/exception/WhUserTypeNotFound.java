@@ -1,14 +1,14 @@
 package com.krk.exception;
 
-import java.util.function.Supplier;
-
 public class WhUserTypeNotFound extends RuntimeException {
+	private static final long serialVersionUID = 1L;
 
-public WhUserTypeNotFound() {
-super();
+	public WhUserTypeNotFound() {
+		super();
 
- }
-public WhUserTypeNotFound(String msg) {
-super(msg);
-}
+	}
+
+	public WhUserTypeNotFound(String msg) {
+		super(msg);
+	}
 }

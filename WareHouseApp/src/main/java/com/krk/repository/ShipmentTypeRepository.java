@@ -10,7 +10,11 @@ import com.krk.model.ShipmentType;
 public interface ShipmentTypeRepository extends JpaRepository<ShipmentType, Integer> {
 	@Query("SELECT COUNT(shipmentCode) FROM ShipmentType WHERE shipmentCode=:shipmentCode")
 	Integer getShipmentTypeCodeCount(String shipmentCode);
-	//shipmentMode, count(shipmentMode)
+
+	// shipmentMode, count(shipmentMode)
 	@Query("SELECT shipmentMode, COUNT(shipmentMode) FROM ShipmentType GROUP BY shipmentMode")
 	List<Object[]> getShipmentModeAndCount();
+
+	@Query("SELECT id,shipmentCode FROM ShipmentType WHERE enableShipment=:enabled")
+	List<Object[]> getShipmentIdAndCodeByEnabled(String enabled);
 }

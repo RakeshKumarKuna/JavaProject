@@ -16,13 +16,15 @@ import com.krk.Charts.UomUtil;
 import com.krk.Util.MailUtil;
 import com.krk.model.WhUserType;
 import com.krk.service.IWhUserTypeService;
+import com.krk.service.impl.WhUserTypeImpl;
+
 import ch.qos.logback.core.model.Model;
 
 @Controller
 @RequestMapping("/WhUser")
 public class WhUserTypeController {
 	@Autowired
-	private IWhUserTypeService service;
+	private  IWhUserTypeService service;
 	@Autowired
 	private MailUtil mail;
 	@Autowired
