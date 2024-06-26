@@ -1,4 +1,5 @@
 package com.krk.controller;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class DocumentController {
 	@Autowired
 	private IDocumentService service;
 
-	//1. show Documents Upload page
+	// 1. show Documents Upload page
 	@GetMapping("/all")
 	public String showDocs(Model model) {
 		List<Object[]> list = service.getDocumentIdAndNames();
@@ -30,15 +31,11 @@ public class DocumentController {
 		return "Documents";
 	}
 
-	//2. on click upload /form submit
+	// 2. on click upload /form submit
 	@PostMapping("/save")
-	public String saveDoc(
-			@RequestParam Integer fid,
-			@RequestParam MultipartFile fob
-			) 
-	{
+	public String saveDoc(@RequestParam Integer fid, @RequestParam MultipartFile fob) {
 		try {
-			//create Model class object
+			// create Model class object
 			Document doc = new Document();
 			doc.setDocId(fid);
 			doc.setDocName(fob.getOriginalFilename());
@@ -50,34 +47,25 @@ public class DocumentController {
 		return "redirect:all";
 	}
 
-	//3. Document downloads
+	// 3. Document downloads
 	@GetMapping("/download")
-	public void  downloadDoc(
-			@RequestParam Integer id,
-			HttpServletResponse resp
-			)
-	{
-		//a. get data based on id
+	public void downloadDoc(@RequestParam Integer id, HttpServletResponse resp) {
+		// a. get data based on id
 		Optional<Document> opt = service.getOneDocument(id);
-		
-		if(opt.isPresent()) {
-			//b. read object
+
+		if (opt.isPresent()) {
+			// b. read object
 			Document doc = opt.get();
-			
-			//c. add Header Param
-			resp.addHeader("Content-Disposition", "attachment;filename="+doc.getDocName());
-			
-			//d. copy data //from --> to
+
+			// c. add Header Param
+			resp.addHeader("Content-Disposition", "attachment;filename=" + doc.getDocName());
+
+			// d. copy data //from --> to
 			try {
 				FileCopyUtils.copy(doc.getDocData(), resp.getOutputStream());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
-
-
-
 }
