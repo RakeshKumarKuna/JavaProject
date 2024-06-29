@@ -32,7 +32,7 @@
 					<td th:text="${ob.partHght}"></td>
 					<td th:text="${ob.partCost}"></td>
 					<td th:text="${ob.partCurrency}"></td>
-					<td><button class="btn btn-danger"><a th:href="@{/delete?id={a} (a=${ob.id})}">Delete</a></button></td>
+					<td><button class="btn btn-danger"><a th:href="@{/part/delete?id={a} (a=${ob.id})}">Delete</a></button></td>
 					<td><a th:href="@{/edit?id={b} (b=${ob.id})}"><span><button
 									class="btn btn-dark w-75">Edit</button></span></a></td>
 				</tr>

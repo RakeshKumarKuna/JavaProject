@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.krk.model.Part;
 import com.krk.service.IOrderMethodService;
 import com.krk.service.IPartService;
@@ -47,12 +49,19 @@ public class PartController {
 
 	// 3. Display Parts
 	@GetMapping("/all")
-	public String gatAll(@ModelAttribute Part part,Map map) {
+	public String getAll(@ModelAttribute Part part,Map map) {
 		map.put("data",service.getAllParts());
 		return "PartData";
 	}
 	// 4. Show Edit
-
-	// 5. DoUpdate
+    public String edit(@RequestParam Integer id) {
+    	return "Partedit";
+    }
+    @GetMapping("/delete")
+    public String delete(@RequestParam Integer id) {
+    service.deletePart(id);
+    	return "redirect:all";
+    }
+	// 6. DoUpdate
 
 }
