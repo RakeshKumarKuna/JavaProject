@@ -13,37 +13,36 @@
 	 text-decoration:none;
 	 color:white;
 	 }
+	 th{
+	 color:white;
+	 }
 	</style>
 </head>
 <body>
 	<div class="container">
 		<div>
 			<div class="bg-dark text-white text-center">
-				<h3>SHIPMENT TYPE DATA PAGE</h3>
+				<h3>PURCHASE DATA PAGE</h3>
 			</div>
 			<div>
 				<table class="table table-hover">
 					<tr class="bg-dark">
-						<th>ID</th>
 						<th>OrderCode</th>
-						<th>ReferenceNumber</th>
 						<th>QualityCheck</th>
 						<th>Status</th>
 						<th>Description</th>
+						<th>Shipment</th>
+						<th>Vendor</th>
 						<th>OPERATION</th>
 					</tr>
 					<tr th:each="ob:${list}">
-						<td th:text="${ob.orderId}"></td>
 						<td th:text="${ob.orderCode}"></td>
-						<td th:text="${ob.refernceNumber}"></td>
 						<td th:text="${ob.qualityCheck}"></td>
 						<td th:text="${ob.status}"></td>
 						<td th:text="${ob.description}"></td>
-						<td><button class="btn btn-danger" type="button">
-								<a th:href="@{/st/delete?id={data}(data=${ob.orderId})}">Delete</a>
-							</button></td>
-						<td><a class="btn btn-info"
-							th:href="@{/st/edit?id={data}(data=${ob.orderId})}">EDIT</a></td>
+						<td th:text="${ob.shipmentType.shipmentCode}"></td>
+						<td th:text="${ob.whuserType.userCode}"></td>
+						<td><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">Add Parts</a></button></td>
 					</tr>
 				</table>
 			</div>

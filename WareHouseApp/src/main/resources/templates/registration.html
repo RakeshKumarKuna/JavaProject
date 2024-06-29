@@ -133,7 +133,11 @@
                     <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
                         id="userbuttonred">Reset</button>
                 </div>
+                
         </form>
+    </div>
+    <div class="text-center text-primary" th:if="${val != null}">
+    <span th:text="${val}"></span>
     </div>
 </body>
 

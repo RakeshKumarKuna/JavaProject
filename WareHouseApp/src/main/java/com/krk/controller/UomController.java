@@ -1,18 +1,17 @@
 package com.krk.controller;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.krk.Charts.UomUtil;
-import com.krk.Util.MailUtil;
 import com.krk.model.Uom;
 import com.krk.service.IUomService;
 
@@ -51,12 +50,11 @@ public class UomController {
      * @return  regsave page == conformartion messeage to client
      */
     @PostMapping("/save")
-    public String save(@ModelAttribute Uom uom,Map map ) {
+    public String save(@ModelAttribute Uom uom,Model map,RedirectAttributes redirect ) {
     	Integer id=ser.saveUom(uom);
     	String result="Uom saved with id "+id;
-    	map.put("val", result);
-    	//map.put("data", ser.getAllUoms());
-    	   	return "regsave";
+    	redirect.addFlashAttribute("val", result);
+    	   	return "redirect:reg";
     }
     /**
      * Displaying the all  data
@@ -68,9 +66,6 @@ public class UomController {
     @GetMapping("/getdata")
     public String getAllUoms(@ModelAttribute("uom") Uom uom,Map map) throws Exception {
     	map.put("data", ser.getAllUoms());
-    	for(int i=0;i<=5;i++) {
-    	
-    	}
     	return "resultdata";
     }
     /**
