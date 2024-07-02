@@ -21,4 +21,7 @@ public class PurchaseDtl {
 	@ManyToOne
 	@JoinColumn(name = "po_id_fk_col")
 	private Part part;
+	@ManyToOne
+	@JoinColumn(name = "pu_id_fk_col")
+	private PurchaseOrder order;
 }

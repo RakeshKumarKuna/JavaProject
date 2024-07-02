@@ -26,6 +26,9 @@ span {
 
 </head>
 <body>
+<div class="d-flex justify-content-center"> 
+<button style="box-shadow:0px 0px 4px red;background-color:lightgray" class="btn mt-4 w-50">Order Here</button>
+	</div>
 	<div>
 		<div class="head-box">
 			<div style="float: left">
@@ -37,10 +40,11 @@ span {
 					class="btn btn-info" th:text="${obj.status}"></span>
 			</div>
 		</div>
+		<hr>
 
-		<div>
+		<div class="p-2 ms-5">
 			<form th:action="@{/pc/savedtl}" method="POST"
-				th:object="${dtlobj}">
+				th:object="${dtlobj}"  >
 				<dl class="row">
 				<div class="col-3">
 					<dt>PartCode</dt>
@@ -54,17 +58,34 @@ span {
 					<div class="col-3">
 					<dt>Quantity</dt>
 					<dd>
-					<input type="number" class="form-control" th:filed=*{qty}>
+					<input type="text" class="form-control" name=qty>
+					<input type="hidden" name=order.orderId  th:value="${obj.orderId}">
 					</dd>
+					
 					</div>
 					<div class="col-3">
 					<button type="submit" class="btn btn-warning w-50 mt-4">Add Part</button>
 					</div>
 				</dl>
-				
-
 			</form>
 		</div>
-	</div>
+</div>	
+<hr>	
+	<table class="table text-center" >
+		<tr >
+		<th>No</th>
+		<th>ItemCode</th>
+		<th>Base Cost</th>
+		<th>Quantity</th>
+		<th>Operation</th>
+		</tr>
+		<tr th:each="ob:${dtllist}">
+		<td th:text="${ob.id}"></td>
+		<td th:text="${ob.part.partCode}"></td>
+		<td th:text="${ob.part.partCost}"></td>
+		<td th:text="${ob.qty}"></td>
+		<td><button class="btn btn-danger"><a>Remove</a></button></td>
+		</tr>
+		</table>
 </body>
 </html>

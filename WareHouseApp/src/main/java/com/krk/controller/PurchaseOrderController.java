@@ -36,7 +36,7 @@ public class PurchaseOrderController {
 	}
 
 	@GetMapping("/registration")
-	public String savePurchaseOrder(Map map) {
+	public String showPurchaseOrder(Map map) {
 		addDynbamicUiComponent(map);
 		PurchaseOrder obj=new PurchaseOrder();
 		obj.setStatus("Open");
@@ -63,11 +63,16 @@ public class PurchaseOrderController {
 		map.put("obj", ordobj);
 		map.put("dtlobj", new PurchaseDtl());
 		map.put("partidcode",partService.getPartIDAndCode());
+		List<PurchaseDtl> dtl=service.getPurchaseDtlsByOrderid(id);
+		map.put("dtllist", dtl);
 		return "PurchaseOrderParts";
 	}
 	@PostMapping("/savedtl")
 	public String saveDtl(@ModelAttribute PurchaseDtl dtl) {
+		service.savepurchaseOrderDtl(dtl);
 		System.out.println(dtl.toString());
-		return "redirect:parts";
+		System.out.println("hello");
+		System.out.println(dtl.getQty());
+		return "redirect:parts?id="+dtl.getOrder().getOrderId();
 	}
 }
