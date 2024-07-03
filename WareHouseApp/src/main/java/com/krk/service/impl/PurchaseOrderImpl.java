@@ -53,4 +53,11 @@ public class PurchaseOrderImpl implements IPurchaseOrderService {
 		return  dtlRepo.getPurchaseDtlsByOrderid(orderId);
 		
 	}
+	
+	public void deleteDtlById(Integer id) {
+	   dtlRepo.deleteById(id);
+	}
+	public Integer getCount() {
+		return dtlRepo.getCount();
+	}
 }

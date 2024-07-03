@@ -79,12 +79,12 @@ span {
 		<th>Quantity</th>
 		<th>Operation</th>
 		</tr>
-		<tr th:each="ob:${dtllist}">
-		<td th:text="${ob.id}"></td>
+		<tr th:each="ob,i:${dtllist}">
+		<td th:text="${i.count}"></td>
 		<td th:text="${ob.part.partCode}"></td>
 		<td th:text="${ob.part.partCost}"></td>
 		<td th:text="${ob.qty}"></td>
-		<td><button class="btn btn-danger"><a>Remove</a></button></td>
+		<td><button class="btn btn-danger"><a th:href="@{/pc/delete?dtlId={id2}&orderId={id1} (id2=${ob.id},id1=${obj.orderId})}">Remove</a></button></td>
 		</tr>
 		</table>
 </body>

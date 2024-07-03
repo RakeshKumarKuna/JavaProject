@@ -12,4 +12,6 @@ void deletePurchaseOrder(Integer id);
 PurchaseOrder getOnePurchaseOrder(Integer id);
 Integer savepurchaseOrderDtl(PurchaseDtl dtl);
 public List<PurchaseDtl> getPurchaseDtlsByOrderid(Integer orderId); 
+public void deleteDtlById(Integer id);
+public Integer getCount() ;
 }

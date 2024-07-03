@@ -60,6 +60,12 @@ public class PurchaseOrderController {
 	@GetMapping("/parts")
 	public String showParts(@RequestParam Integer id,Map map) {
 		PurchaseOrder ordobj=service.getOnePurchaseOrder(id);
+		if(service.getCount()!=0) {
+			ordobj.setStatus("Picking");
+		}
+		else {
+			ordobj.setStatus("Open");
+		}
 		map.put("obj", ordobj);
 		map.put("dtlobj", new PurchaseDtl());
 		map.put("partidcode",partService.getPartIDAndCode());
@@ -74,5 +80,10 @@ public class PurchaseOrderController {
 		System.out.println("hello");
 		System.out.println(dtl.getQty());
 		return "redirect:parts?id="+dtl.getOrder().getOrderId();
+	}
+	@GetMapping("/delete")
+	public String deleteDtl(@RequestParam Integer dtlId,@RequestParam Integer orderId) {
+	service.deleteDtlById(dtlId);
+	return "redirect:parts?id="+orderId;	
 	}
 }
