@@ -1,4 +1,5 @@
 package com.krk.controller;
+
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class PurchaseOrderController {
 	@GetMapping("/registration")
 	public String showPurchaseOrder(Map map) {
 		addDynbamicUiComponent(map);
-		PurchaseOrder obj=new PurchaseOrder();
+		PurchaseOrder obj = new PurchaseOrder();
 		obj.setStatus("Open");
 		map.put("pcobj", obj);
 		return "PurchaseRegistraion";
@@ -47,43 +48,61 @@ public class PurchaseOrderController {
 	@PostMapping("/save")
 	public String savePurchase(@ModelAttribute PurchaseOrder pcorder, RedirectAttributes redirect, Map map) {
 		addDynbamicUiComponent(map);
-			int id = service.savePurchaseOrder(pcorder);
+		int id = service.savePurchaseOrder(pcorder);
 		redirect.addFlashAttribute("savemsg", "Your Rigistartion Completed");
 		return "redirect:registration";
 	}
+
 	@GetMapping("/all")
 	public String getAllData(Map map) {
 		List<PurchaseOrder> list = service.getAllPurchaseOrders();
 		map.put("list", list);
+		list.stream().forEach((data)->System.out.println(data.getStatus()));
 		return "PurchaseData";
 	}
+
 	@GetMapping("/parts")
-	public String showParts(@RequestParam Integer id,Map map) {
-		PurchaseOrder ordobj=service.getOnePurchaseOrder(id);
-		if(service.getCount()!=0) {
-			ordobj.setStatus("Picking");
-		}
-		else {
-			ordobj.setStatus("Open");
-		}
+	public String showParts(@RequestParam Integer id, Map map) {
+		PurchaseOrder ordobj = service.getOnePurchaseOrder(id);
 		map.put("obj", ordobj);
 		map.put("dtlobj", new PurchaseDtl());
-		map.put("partidcode",partService.getPartIDAndCode());
-		List<PurchaseDtl> dtl=service.getPurchaseDtlsByOrderid(id);
+		map.put("partidcode", partService.getPartIDAndCode());
+		List<PurchaseDtl> dtl = service.getPurchaseDtlsByOrderid(id);
 		map.put("dtllist", dtl);
+		/*
+		 * if (service.getCount(ordobj.getOrderId()) == 0) {
+		 * service.updatestatus("Open", ordobj.getOrderId()); } else if
+		 * (service.getCount(ordobj.getOrderId()) > 0) { service.updatestatus("Picking",
+		 * ordobj.getOrderId()); }
+		 */
 		return "PurchaseOrderParts";
 	}
+
 	@PostMapping("/savedtl")
 	public String saveDtl(@ModelAttribute PurchaseDtl dtl) {
 		service.savepurchaseOrderDtl(dtl);
-		System.out.println(dtl.toString());
-		System.out.println("hello");
-		System.out.println(dtl.getQty());
-		return "redirect:parts?id="+dtl.getOrder().getOrderId();
+		service.updatestatus("Picking", dtl.getOrder().getOrderId());
+		return "redirect:parts?id=" + dtl.getOrder().getOrderId();
 	}
+
 	@GetMapping("/delete")
-	public String deleteDtl(@RequestParam Integer dtlId,@RequestParam Integer orderId) {
-	service.deleteDtlById(dtlId);
-	return "redirect:parts?id="+orderId;	
+	public String deleteDtl(@RequestParam Integer dtlId, @RequestParam Integer orderId,
+			@RequestParam String orderCode) {
+		service.deleteDtlById(dtlId);
+	
+      
+		if (service.getCount(orderId) == 0) {
+			service.updatestatus("Open", orderId);
+		} /*
+			 * else { service.updatestatus("Picking", orderId); }
+			 */
+
+		return "redirect:parts?id=" + orderId;
+	}
+	@GetMapping("/confirm")
+	public String confirmOrder(@RequestParam Integer orderId) {
+		service.updatestatus("Ordered", orderId);
+		System.out.println("hello");
+		return "redirect:parts?id=" + orderId;
 	}
 }

@@ -38,11 +38,12 @@
 					<tr th:each="ob:${list}">
 						<td th:text="${ob.orderCode}"></td>
 						<td th:text="${ob.qualityCheck}"></td>
-						<td th:text="${ob.status}"></td>
+						<td th:text="${ob.status}" class="text-info fw-bold fs-6" ></td>
 						<td th:text="${ob.description}"></td>
 						<td th:text="${ob.shipmentType.shipmentCode}"></td>
 						<td th:text="${ob.whuserType.userCode}"></td>
-						<td><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">Add Parts</a></button></td>
+						<td th:if="${ob.status!='Ordered'}"><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">Add Parts      </a></button></td>
+						<td th:if="${ob.status=='Ordered'}"><button class="btn btn-success"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">CheckOut</a></button></td>
 					</tr>
 				</table>
 			</div>

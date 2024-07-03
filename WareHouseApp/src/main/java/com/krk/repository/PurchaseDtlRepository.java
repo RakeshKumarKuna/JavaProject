@@ -10,6 +10,8 @@ public interface PurchaseDtlRepository extends JpaRepository<PurchaseDtl, Intege
 
 	@Query("select dtl from PurchaseDtl dtl join dtl.order as order where order.id=:orderId")
 	public List<PurchaseDtl> getPurchaseDtlsByOrderid(Integer orderId); 
-	@Query("select count(*) from PurchaseDtl")
-	public Integer getCount();
+	
+//	@Query("select count(*) from PurchaseDtl")
+	@Query("select count(dtl) from PurchaseDtl dtl join dtl.order as order where order.id=:orderId")
+	public Integer getCount(Integer orderId);
 }

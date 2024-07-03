@@ -3,6 +3,8 @@ package com.krk.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.krk.exception.PurchaseOrderNotFoundException;
 import com.krk.model.PurchaseDtl;
 import com.krk.model.PurchaseOrder;
@@ -53,11 +55,19 @@ public class PurchaseOrderImpl implements IPurchaseOrderService {
 		return  dtlRepo.getPurchaseDtlsByOrderid(orderId);
 		
 	}
-	
+	@Override
 	public void deleteDtlById(Integer id) {
 	   dtlRepo.deleteById(id);
 	}
-	public Integer getCount() {
-		return dtlRepo.getCount();
+	@Override
+	public Integer getCount(Integer orderId) {
+		System.out.println(orderId);
+		return dtlRepo.getCount( orderId);
+	}
+
+	@Override
+	@Transactional
+	public void updatestatus(String status, Integer orderId) {
+		repo.updatestatus(status, orderId);
 	}
 }

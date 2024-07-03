@@ -27,7 +27,7 @@ span {
 </head>
 <body>
 <div class="d-flex justify-content-center"> 
-<button style="box-shadow:0px 0px 4px red;background-color:lightgray" class="btn mt-4 w-50">Order Here</button>
+<h2 style="box-shadow:0px 0px 4px red;background-color:lightgray" class="mt-4 w-50 text-center">Order Here</h2>
 	</div>
 	<div>
 		<div class="head-box">
@@ -40,9 +40,9 @@ span {
 					class="btn btn-info" th:text="${obj.status}"></span>
 			</div>
 		</div>
-		<hr>
+		<hr th:if="${obj.status =='Picking' || obj.status =='Open'}">
 
-		<div class="p-2 ms-5">
+		<div class="p-2 ms-5" th:if="${obj.status =='Picking' || obj.status =='Open'}" >
 			<form th:action="@{/pc/savedtl}" method="POST"
 				th:object="${dtlobj}"  >
 				<dl class="row">
@@ -77,15 +77,18 @@ span {
 		<th>ItemCode</th>
 		<th>Base Cost</th>
 		<th>Quantity</th>
-		<th>Operation</th>
+		<th th:if="${obj.status =='Picking' || obj.status =='Open'}">Operation</th>
 		</tr>
 		<tr th:each="ob,i:${dtllist}">
 		<td th:text="${i.count}"></td>
 		<td th:text="${ob.part.partCode}"></td>
 		<td th:text="${ob.part.partCost}"></td>
 		<td th:text="${ob.qty}"></td>
-		<td><button class="btn btn-danger"><a th:href="@{/pc/delete?dtlId={id2}&orderId={id1} (id2=${ob.id},id1=${obj.orderId})}">Remove</a></button></td>
+		<td th:if="${obj.status =='Picking' || obj.status =='Open'}"><button class="btn btn-danger"><a th:href="@{/pc/delete?dtlId={id2}&orderId={id1}&orderCode={id3} (id2=${ob.id},id1=${obj.orderId},id3=${ob.order.orderCode})}">Remove</a></button></td>
 		</tr>
 		</table>
+		<div class="d-flex justify-content-center align-items-center" th:if="${obj.status}==Picking">
+		<button class="btn btn-info text-center"><a th:href="@{/pc/confirm?orderId={id}(id=${obj.orderId})}">Place Order</a></button>
+		</div>
 </body>
 </html>
