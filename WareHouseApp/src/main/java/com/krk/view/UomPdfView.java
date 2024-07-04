@@ -15,7 +15,6 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@Component("pdf")
 public class UomPdfView extends AbstractPdfView {
 
 	@Override

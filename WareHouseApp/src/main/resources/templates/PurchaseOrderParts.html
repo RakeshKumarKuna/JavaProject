@@ -11,6 +11,10 @@
 span {
 	margin-right: 10px;
 }
+button a{
+text-decoration:none;
+color:white;
+}
 </style>
 <link rel="shortcut icon" href="Images/blockchain.png">
 <link
@@ -87,8 +91,11 @@ span {
 		<td th:if="${obj.status =='Picking' || obj.status =='Open'}"><button class="btn btn-danger"><a th:href="@{/pc/delete?dtlId={id2}&orderId={id1}&orderCode={id3} (id2=${ob.id},id1=${obj.orderId},id3=${ob.order.orderCode})}">Remove</a></button></td>
 		</tr>
 		</table>
-		<div class="d-flex justify-content-center align-items-center" th:if="${obj.status}==Picking">
-		<button class="btn btn-info text-center"><a th:href="@{/pc/confirm?orderId={id}(id=${obj.orderId})}">Place Order</a></button>
+		<div class="p-5">
+		<button class="btn btn-info text-center float-start" th:if="${obj.status}==Picking"><a th:href="@{/pc/confirm?orderId={id}(id=${obj.orderId})}">Place Order</a></button>
+		<button class="btn btn-dark text-center float-end" th:if="${obj.status}==Ordered"><a th:href="@{/pc/generate?orderId={id}(id=${obj.orderId})}">Generate Invoice</a></button>
+		<button class="btn btn-dark text-center float-end" th:if="${obj.status}==Invoiced"><a th:href="@{/pc/printinvoice?orderId={id}(id=${obj.orderId})}">Print Invoice</a></button>
+		<span class="float-none"></span>
 		</div>
 </body>
 </html>

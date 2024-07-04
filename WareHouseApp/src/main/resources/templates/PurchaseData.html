@@ -26,24 +26,29 @@
 			</div>
 			<div>
 				<table class="table table-hover">
-					<tr class="bg-dark">
+					<tr class="bg-dark text-center">
 						<th>OrderCode</th>
 						<th>QualityCheck</th>
 						<th>Status</th>
 						<th>Description</th>
 						<th>Shipment</th>
 						<th>Vendor</th>
-						<th>OPERATION</th>
+						<th colspan="2" class="text-center">OPERATIONS</th>
+						<th></th>
 					</tr>
-					<tr th:each="ob:${list}">
+					<tr th:each="ob:${list}" class="text-center">
 						<td th:text="${ob.orderCode}"></td>
 						<td th:text="${ob.qualityCheck}"></td>
-						<td th:text="${ob.status}" class="text-info fw-bold fs-6" ></td>
+						<td  th:if="${ob.status=='Ordered'}"><span th:text="${ob.status}" class="text-success fw-bold fs-6"></span></td>
+						<td  th:if="${ob.status!='Ordered'}"><span th:text="${ob.status}" class="text-primary fw-bold fs-6"></span></td>
+						
 						<td th:text="${ob.description}"></td>
 						<td th:text="${ob.shipmentType.shipmentCode}"></td>
 						<td th:text="${ob.whuserType.userCode}"></td>
-						<td th:if="${ob.status!='Ordered'}"><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">Add Parts      </a></button></td>
+						<td th:if="${ob.status=='Open' || ob.status=='Picking' || ob.status=='Ordered'}"><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">Add Parts</a></button></td>
+						<td th:if="${ob.status=='Ordered' || ob.status=='Invoiced' }"><button class="btn btn-primary"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">&nbsp;&nbsp; Show&nbsp;&nbsp;&nbsp;</a></button></td>
 						<td th:if="${ob.status=='Ordered'}"><button class="btn btn-success"><a th:href="@{/pc/parts?id={data} (data=${ob.orderId})}">CheckOut</a></button></td>
+					    <td th:if="${ob.status=='Invoiced'}"><button class="btn btn-dark text-center"><a th:href="@{/pc/generate}">Invoice</a></button></td>
 					</tr>
 				</table>
 			</div>
