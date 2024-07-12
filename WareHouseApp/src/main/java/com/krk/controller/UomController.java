@@ -54,6 +54,7 @@ public class UomController {
     	Integer id=ser.saveUom(uom);
     	String result="Uom saved with id "+id;
     	redirect.addFlashAttribute("val", result);
+    	
     	   	return "redirect:reg";
     }
     /**

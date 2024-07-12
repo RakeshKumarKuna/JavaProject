@@ -47,6 +47,21 @@ public class VendorInvoicePdfView extends AbstractPdfView {
 		header.addCell("SHIMPMENT CODE");
 		header.addCell(pc.getShipmentType().getShipmentCode());
 		document.add(header);
+		
+		//adding parts to the pdf
+		PdfPTable dtls=new PdfPTable(4);
+		dtls.addCell("Code");
+		dtls.addCell("Cost");
+		dtls.addCell("Quantity");
+		dtls.addCell("Value");
+		for (PurchaseDtl dt : dtl) {
+          dtls.addCell(dt.getOrder().getOrderCode());
+          dtls.addCell(dt.getPart().getPartCost()+"");
+          dtls.addCell(dt.getQty()+"");
+          dtls.addCell(dt.getPart().getPartCost()*dt.getQty()+"");
+		}
+		document.add(dtls);
+		
 		document.close();
 	}
 

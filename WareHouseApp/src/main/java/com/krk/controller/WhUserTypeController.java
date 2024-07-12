@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.krk.Charts.UomUtil;
 import com.krk.Util.MailUtil;
 import com.krk.model.WhUserType;
@@ -57,6 +59,16 @@ public class WhUserTypeController {
 				}
 			}
 		}.start();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+			}
+		}).start();	
+		//lamda expression for creting thread
+		new Thread(()->{
+			//code
+		}).start();
 		new WhUserType().setUuid(uuid);
 		return "redirect:register";
 	}
