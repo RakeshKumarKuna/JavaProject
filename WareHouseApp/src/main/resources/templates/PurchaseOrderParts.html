@@ -97,5 +97,6 @@ color:white;
 		<button class="btn btn-dark text-center float-end" th:if="${obj.status}==Invoiced"><a th:href="@{/pc/printinvoice?orderId={id}(id=${obj.orderId})}">Print Invoice</a></button>
 		<span class="float-none"></span>
 		</div>
+		 <div th:insert="~{fragments/commonui :: footer}"></div>
 </body>
 </html>
