@@ -40,4 +40,5 @@ public class Part {
 	@ManyToOne
 	@JoinColumn(name = "order_id_fk_col")
 	private OrderMethod order;
+	
 }
