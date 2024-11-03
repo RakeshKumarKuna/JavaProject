@@ -26,13 +26,15 @@ public class UomController {
 	private UomUtil util;
 	@Autowired
 	private ServletContext context;
-
+    private int count=0;
 	/**
 	 * 1.Returning the Home Page
 	 * @return Home page
 	 */
 	@GetMapping("/")
-	public String home() {
+	public String home(Map map) {
+		++count;
+		map.put("visitorscount",count);
 		return "home";
 	}
 	/**

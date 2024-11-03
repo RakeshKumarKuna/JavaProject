@@ -27,7 +27,6 @@ public class UomRest {
 		ResponseEntity<List<Uom>> res = new ResponseEntity<List<Uom>>(response, HttpStatus.OK);
 		return res;
 	}
-
 	@PostMapping("/save")
 	public ResponseEntity<?> save(@RequestBody Uom uom) {
 		Integer id = ser.saveUom(uom);

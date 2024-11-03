@@ -20,7 +20,6 @@ public class MailUtil {
         		helper.setTo(to);
         		helper.setSubject(subject);
         		helper.setText(text);
-        		helper.setFrom("Warehouse@gmail.com");
         		helper.setPriority(3);
         		helper.setSentDate(new Date());
         		 boolean b=helper.isValidateAddresses();

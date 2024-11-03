@@ -87,6 +87,14 @@
     <artifactId>jfreechart</artifactId>
     <version>1.5.4</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.2</version>
+    <scope>test</scope>
+</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 <dependency>
