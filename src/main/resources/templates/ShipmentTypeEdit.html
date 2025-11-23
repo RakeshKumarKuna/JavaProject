@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+     <link rel="shortcut icon" href="Images/blockchain.png">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        body {
+            background-image: url(Images/background5.png);
+            color: black;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" >
+
+        <header class="d-flex justify-content-around mt-2">
+            <div><button class="btn btn-primary"><a href="/"><span
+                            class="bi bi-house">Home</span></a></button></div>
+            <h4 class="text-center font-weight-bolder text-white bg-dark rounded-2" style="font-weight: 900;">WELCOME TO
+                SHIPMENT TYPE UPDATE PAGE <span class="bi bi-person-workspace"></span></h4>
+            <div><button class="btn btn-dark"><a href="all">View Shipment Data</a></button></div>
+        </header>
+        <div class="d-flex justify-content-center w-100" >
+            <form class="w-50" th:action="@{/st/update}" method="POST" th:object="${shipmentType}">
+                <div>
+                    <label>SHIPMENT ID</label>
+                    <input type="text" th:field="*{id}" class="form-control" readonly>
+                    <span id="shipmentIdError"></span>
+                </div>
+                <div>
+                    <label>SHIPMENT MODE</label>
+                    <input type="text" th:field="*{shipmentMode}" class="form-control" readonly>
+                    <span id="shipmentModeError">
+                </div>
+                <div>
+                    <label>SHIPMENT CODE</label>
+                    <input type="text" th:field="*{shipmentCode}" class="form-control" readonly>
+                    <span id="shipmentCodeError">
+                </div>
+                <div>
+                    <label>ENABLE SHIPMENT</label>
+                    <input type="radio" th:field="*{enableShipment}" value="YES">
+                    YES <input type="radio" th:field="*{enableShipment}" value="NO">
+                    NO
+                    <span id="enableShipmentError"></span>
+                </div>
+                <div>
+                    <label>SHIPMENT GRADE</label>
+                    <input type="radio" th:field="*{shipmentGrade}" value="A">
+                    <span>A</span> <input type="radio" th:field="*{shipmentGrade}" value="B">
+                    <span>B</span> <input type="radio" th:field="*{shipmentGrade}" value="C">
+                    <span>C</span>
+                    <span id="shipmentGradeError"></span>
+                </div>
+                <div>
+                    <label>DESCRIPTION</label>
+                    <textarea th:field="*{description}" class="form-control"></textarea>
+                    <span id="descriptionError"></span>
+                </div>
+                <div class="mt-2" style="padding-top:20px;">
+                    <input type="submit" value="Update" class="btn btn-success" />
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+     <div th:insert="~{fragments/commonui :: footer}"></div>
+</body>
+
+</html>

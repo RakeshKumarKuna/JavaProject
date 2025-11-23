@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th=”http://www.thymeleaf.org”>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UOM Register</title>
+     <link rel="shortcut icon" href="Images/blockchain.png">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        a:hover {
+            text-decoration: none;
+            color: white;
+        }
+        body{
+            background-image: url(Images/background5.png);
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#errorselect").hide();
+            $("#errormodel").hide();
+            $("#descriptionError").hide();
+            var selectError = false;
+            var modelError = false;
+            var desError = false;
+            //for selecterror
+            function validateselect() {
+                var val = $("#sel").val();
+                if (val == "wrg") {
+                    $("#errorselect").show();
+                    $("#errorselect").html("Select Uom type");
+                    $("#errorselect").css("color", "red");
+                    selectError = false;
+                }
+                else if (val != "wrg") {
+                    $("#errorselect").hide();
+                    selectError = true;
+                }
+                return selectError;
+            }
+
+            //for description
+            function validate_description() {
+                var val = $("#description").val();
+                var exp = /^[A-Za-z0-9\-\.\,\s]{10,100}$/;
+                if (val == '') {
+                    $("#descriptionError").show();
+                    $("#descriptionError").html("Description <b>Can not be empty </b>");
+                    $("#descriptionError").css("color", "red");
+                    desError = false;
+                } else if (!exp.test(val)) {
+                    $("#descriptionError").show();
+                    $("#descriptionError").html("Description <b>must be 10-100 chars only!</b>");
+                    $("#descriptionError").css("color", "red");
+                    desError = false;
+                } else {
+                    $("#descriptionError").hide();
+                    desError = true;
+                }
+                return desError;
+            }
+            //Action to Functions
+            $("#sel").change(function () {
+                validateselect();
+            });
+            $("#model").keyup(function () {
+                validatemodel();
+            });
+            $("#description").keyup(function () {
+                validate_description();
+            });
+
+            $("#frm").submit(function () {
+                validateselect();
+                if (validateselect() && validatemodel() && validate_description()) {
+                    return true;
+                }
+                else
+                    return false;
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<div th:insert="~{fragments/commonui :: userhead}"></div>
+<div th:insert="~{fragments/commonui :: menu}"></div>
+    <header class="d-flex justify-content-around mt-2">
+        <div><button class="btn btn-primary"><a href="/"><span class="bi bi-house">Home</span></a></button></div>
+        <h4 class="text-center font-weight-bolder text-white bg-dark rounded-2"  style="font-weight: 900;">UOM Registration <span class="bi bi-person-workspace"></span></h4>
+        <div><button class="btn btn-dark"><a href="piechart">View uom Data</a></button></div>
+    </header>
+    <div class="d-flex justify-content-center">
+        <form class="main-box w-50 border-3 bg-opacity-50" th:action="@{/save}" method="post" id="frm">
+            <div>
+                <div class="mt-2">
+                    <label class="form-lable" for="uomType">
+                        <h5>Type</h5>
+                    </label>
+                    <select class="form-select w-100" name="uomType" id="sel">
+                        <option value="wrg" selected>Select</option>
+                        <option value="packing">Packing</option>
+                        <option value="nopacking">No-packing</option>
+                        <option value="na">Na</option>
+                    </select>
+                    <span id="errorselect"></span>
+                </div>
+                <div class="mt-2 ">
+                    <lable class="form-lable mt-4" for="uomModel">
+                        <h5>Model</h5>
+                    </lable>
+                    <input type="text" class="form-control w-100" name="uomModel" id="model">
+                    <span id="errormodel"></span>
+                </div>
+                <div class="mt-2">
+                    <lable class="form-lable" for="description">
+                        <h5>Description</h5>
+                    </lable>
+                    <textarea rows="3" cols="3" class="form-control" name="description" id="description"></textarea>
+                    <span id="descriptionError"></span>
+                </div>
+                <div class="mt-2">
+                    <input style="margin-left:10px;height: 50px;width:100px;" type="submit" class="btn btn-success"
+                        value="AddUom" id="userbuttongreen">
+                    <button style="height:50px;width:100px;" type="reset" class="btn btn-danger"
+                        id="userbuttonred">Reset</button>
+                </div>
+                
+        </form>
+    </div>
+    <div class="text-center text-primary" th:if="${val != null}">
+    <span th:text="${val}"></span>
+    </div>
+     <div th:insert="~{fragments/commonui :: footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+     <link rel="shortcut icon" href="Images/blockchain.png">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-size: small;
+            font-weight: 100;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        body {
+            background-image: url(/Images/background5.png);
+            color: black;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <header class="d-flex justify-content-around mt-2">
+                <div><button class="btn btn-primary"><a href="/"><span
+                                class="bi bi-house">Home</span></a></button></div>
+                <h4 class="text-center font-weight-bolder text-white bg-dark" style="font-weight: 900;">WELCOME TO PART
+                    REGISTER PAGE </h4>
+                <div><button class="btn btn-dark"><a href="all">View Part Data</a></button></div>
+            </header>
+            <div class="d-flex justify-content-center ">
+                <form class="w-50" th:action="@{/part/save}" method="POST" th:object="${part}">
+                    <dl>
+                        <dt>PART CODE</dt>
+                        <dd><input type="text" th:field="*{partCode}" class="form-control" /></dd>
+                        <span id="partCodeError"></span>
+                        <dt>PART DIMENSIONS</dt>
+                        <dd class="row">
+                            <span class="col">LENGTH: <input type="text" th:field="*{partLen}"
+                                    class="form-control" /></span>
+                            <span class="col">WIDTH: <input type="text" th:field="*{partWid}"
+                                    class="form-control" /></span>
+                            <span class="col">HEIGHT: <input type="text" th:field="*{partHght}"
+                                    class="form-control" /></span>
+                        </dd>
+                        <span id="partDimError"></span>
+
+                        <dt>BASE COST</dt>
+                        <dd><input type="text" th:field="*{partCost}" class="form-control" /></dd>
+                        <span id="partCostError"></span>
+                        <dt>BASE CURRENCY</dt>
+                        <dd><select th:field="*{partCurrency}" class="form-control">
+                                <option value="">-SELECT-</option>
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                                <option value="AUD">AUD</option>
+                            </select>
+                        </dd>
+                        <span id="partCurrencyError"></span>
+                        <dt>UOM</dt>
+                        <dd><select th:field="*{uom.id}" class="form-control">
+                                <option value="">-SELECT-</option>
+                                <option th:each="ob:${uoms}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                            </select>
+                        </dd>
+                        <dt>Sale</dt>
+                        <dd><select th:field="*{order.id}" class="form-control">
+                                <option value="">-SELECT-</option>
+                                <option th:each="ob:${sales}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                            </select>
+                        </dd>
+                    </dl>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <div class="bg-info text-white text-center" th:if="${message != null}">
+                <span th:text="${message}"></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+ <div th:insert="~{fragments/commonui :: footer}"></div>
+</html>
